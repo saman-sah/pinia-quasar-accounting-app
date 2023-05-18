@@ -14,13 +14,17 @@
         </q-item>
       </q-toolbar>
     </q-header>
-
+    <q-footer elevated>
+        <q-toolbar>
+          <q-toolbar-title><nav-menu/></q-toolbar-title>
+        </q-toolbar>
+      </q-footer>
+    
+    
     <q-drawer v-model="leftDrawerOpen"
     show-if-above
     bordered
-    >
-      <nav-menu/>
-    </q-drawer>
+    ></q-drawer>
 
     <q-page-container>
       <router-view />
