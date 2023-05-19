@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import CreateNew from './Modals/CreateNew.vue'
+import CreateNew from './modals/CreateNew.vue'
   const createNew=ref(false)
   const linksList = [
     {
