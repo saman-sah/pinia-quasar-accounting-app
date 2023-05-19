@@ -1,0 +1,76 @@
+{
+    "expense": {
+        "basics" : {
+            "title": "Basics",
+            "src": "./assets/images/income.svg",
+            "subItems" : {
+                "0":{
+                    "title": "Food & Drinks",                    
+                    "src": "./assets/images/income.svg"
+                },
+                "1":{
+                    "title": "Bill",                    
+                    "src": "./assets/images/income.svg"
+                },
+                "2":{
+                    "title": "Transport",                    
+                    "src": "./assets/images/income.svg"
+                }
+            }
+        },
+        "enjoyment" : {
+            "title": "Enjoyment",
+            "src": "./assets/images/income.svg",
+            "subItems" : {
+                "0": {
+                    "title": "Entertainment",                    
+                    "src": "./assets/images/income.svg"
+                },
+                "1": {
+                    "title": "Fashion",                    
+                    "src": "./assets/images/income.svg"
+                },
+                "2": {
+                    "title": "Travel",                    
+                    "src": "./assets/images/income.svg"
+                }
+            }
+        }
+    },
+    "incomes": {
+        "salary" : {
+            "title": "Salary",
+            "src": "./assets/images/income.svg"
+        },
+        "award" : {
+            "title": "Award",
+            "src": "./assets/images/income.svg"
+        },
+        "interest" : {
+            "title": "Interest",
+            "src": "./assets/images/income.svg"
+        },
+        "otherIncoms" : {
+            "title": "Other Incoms",
+            "src": "./assets/images/income.svg"
+        }
+    },
+    "debts": {
+        "lend" : {
+            "title": "Lend",
+            "src": "./assets/images/income.svg"
+        },
+        "repayment" : {
+            "title": "Repayment",
+            "src": "./assets/images/income.svg"
+        },
+        "borrow" : {
+            "title": "Borrow",
+            "src": "./assets/images/income.svg"
+        },
+        "debtCollection" : {
+            "title": "Debt Collection",
+            "src": "./assets/images/income.svg"
+        }
+    }
+}

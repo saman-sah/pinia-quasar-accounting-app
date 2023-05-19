@@ -1,47 +1,57 @@
 <template>
-    <q-card class="q-pa-md row column justify-between content-between">
-      <div class="col inputs-section">
-        <q-input outlined 
-        v-model.number="income"
-        type="number"
-        label="income" >      
-          <q-btn @click="storeAccounting.incomeExpend({
-            title:'income',
-            action: income
-            })"        
-          round  dense  flat  icon="send" />
-        </q-input>
-        <q-input outlined 
-        v-model.number="expend"
-        type="number"       
-        class='q-mt-sm' 
-        label="expend">
-          <q-btn @click="storeAccounting.incomeExpend({
-            title: 'expend',
-            action: expend
-            })"  
-          round dense flat icon="send" />
-        </q-input>
-      </div>
-      <div>
-        <q-card dark bordered class="bg-grey-9 my-card">
-          <q-card-section class="row q-pa-md justify-between">
-            <span>Total:</span>
-            <span>{{ storeAccounting.total }}</span>
-          </q-card-section>
-        </q-card>
-      </div>
-    </q-card>
-  </template>
-  
+  <div class="q-pa-md">
+    <div class="q-gutter-y-md" style="max-width: 600px">
+      <q-card>
+        <q-tabs
+          v-model="tab"
+          dense
+          class="text-grey"
+          active-color="primary"
+          indicator-color="primary"
+          align="justify"
+          narrow-indicator
+        >
+          <q-tab name="expense" label="Expense" />
+          <q-tab name="income" label="Income" />
+          <q-tab name="debt" label="Debt" />
+        </q-tabs>
+
+        <q-separator />
+
+        <q-tab-panels v-model="tab" animated>
+          <q-tab-panel name="expense">            
+            <expenseTab :expenseItems="createData.expense ? createData.expense : {}"/>                       
+          </q-tab-panel>
+
+          <q-tab-panel name="income">
+            <incomeTab :incomesItems="createData.incomes ? createData.incomes : {}"/>
+          </q-tab-panel>
+
+          <q-tab-panel name="debt">
+            <debtTab :debtsItems="createData.debts ? createData.debts : {}"/>
+          </q-tab-panel>
+        </q-tab-panels>
+      </q-card>
+    </div>
+  </div>
+</template>
   <script setup>
-  import { useAccountingStore } from 'stores/accounting'
-  import { storeToRefs } from 'pinia';
+  import { onMounted } from 'vue'
+  import expenseTab from './tabs/Expense.vue'
+  import incomeTab from './tabs/Income.vue'
+  import debtTab from './tabs/Debt.vue'
+  import createData  from '../../data.json'
+  // import { useAccountingStore } from 'stores/accounting'
+  // import { storeToRefs } from 'pinia';
   import { ref } from 'vue'
-  const storeAccounting= useAccountingStore();
-  let income= ref('')
-  let expend= ref('')
-  
+  // const storeAccounting= useAccountingStore();
+  const tab= ref('expense')
+  // let income= ref('')
+  // let expend= ref('')
+  onMounted(() => {
+    // console.log('createData.expense');
+    // console.log(createData.expense);
+  })
   </script>
   <style>
   .inputs-section {
