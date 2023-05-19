@@ -31,10 +31,10 @@ import CreateNew from './modals/CreateNew.vue'
   const createNew=ref(false)
   const linksList = [
     {
-      title: 'Income',
-      href: '/income',
+      title: 'Home',
+      href: '/',
       src: './assets/images/income.svg'
-    },
+    },    
     {
       title: 'Expend',
       href: '/expend',
@@ -49,9 +49,9 @@ import CreateNew from './modals/CreateNew.vue'
       src: './assets/images/wallet.svg'
     },
     {
-      title: 'Pos',
-      href: '/expend',
-      src: './assets/images/pos.svg'
+      title: 'Income',
+      href: '/income',
+      src: './assets/images/income.svg'
     },
   ]
  

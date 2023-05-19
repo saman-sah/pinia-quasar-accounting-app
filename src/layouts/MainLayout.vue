@@ -1,11 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-blue-grey-14">
       <q-toolbar>
       <!-- btn toggle menu sidebar -->
-        <q-btn @click="toggleLeftDrawer"
-        flat dense round icon="menu" aria-label="Menu"
-        />
+        <strong>Accounting App</strong>
         <!-- heading title link to home -->
         <q-item clickable tag="a" to="/">
           <q-item-section>
@@ -14,7 +12,7 @@
         </q-item>
       </q-toolbar>
     </q-header>
-    <q-footer elevated>
+    <q-footer elevated class="bg-blue-grey-14">
         <q-toolbar>
           <q-toolbar-title><nav-menu/></q-toolbar-title>
         </q-toolbar>
