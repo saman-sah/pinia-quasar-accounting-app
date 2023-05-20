@@ -5,7 +5,9 @@
         :key="index"
         clickable 
         v-ripple 
-        class="column">
+        class="column"
+        @click="$emit('step2', {type: 'debt', data: item})"
+        v-close-popup>
             <div class="row">
                 <q-item-section avatar>
                     <q-avatar rounded class="img-icon-items bg-blue">

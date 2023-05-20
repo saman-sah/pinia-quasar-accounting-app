@@ -20,15 +20,24 @@
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="expense">            
-            <expenseTab :expenseItems="createData.expense ? createData.expense : {}"/>                       
+            <expenseTab 
+            @step2="$emit('step2', $event)"
+            :expenseItems="createData.expense ? createData.expense : {}"
+            />
           </q-tab-panel>
 
-          <q-tab-panel name="income">
-            <incomeTab :incomesItems="createData.incomes ? createData.incomes : {}"/>
+          <q-tab-panel name="income">            
+            <incomeTab 
+            @step2="$emit('step2', $event)"
+            :incomesItems="createData.incomes ? createData.incomes : {}"
+            />
           </q-tab-panel>
 
           <q-tab-panel name="debt">
-            <debtTab :debtsItems="createData.debts ? createData.debts : {}"/>
+            <debtTab 
+            @step2="$emit('step2', $event)"
+            :debtsItems="createData.debts ? createData.debts : {}"
+            />
           </q-tab-panel>
         </q-tab-panels>
       </q-card>
@@ -36,7 +45,6 @@
   </div>
 </template>
   <script setup>
-  import { onMounted } from 'vue'
   import expenseTab from './tabs/Expense.vue'
   import incomeTab from './tabs/Income.vue'
   import debtTab from './tabs/Debt.vue'
@@ -48,10 +56,6 @@
   const tab= ref('expense')
   // let income= ref('')
   // let expend= ref('')
-  onMounted(() => {
-    // console.log('createData.expense');
-    // console.log(createData.expense);
-  })
   </script>
   <style>
   .inputs-section {
