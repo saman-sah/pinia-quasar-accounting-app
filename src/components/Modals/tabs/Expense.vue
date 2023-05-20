@@ -20,7 +20,9 @@
             </div>        
             <q-item v-for="subItem in item.subItems"
             :key="subItem.title+100"
-            clickable v-ripple>
+            clickable v-ripple
+            @click="$emit('step2', {type:'expense' , data: subItem})"
+            v-close-popup>
                 <q-item-section avatar>
                     <!-- <q-icon color="primary" :name="subItem.icon" /> -->
                     <q-avatar rounded class="img-icon-items bg-red">
@@ -39,15 +41,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
     const props = defineProps({
         expenseItems: Object
     })
-    onMounted(() => {
-        // console.log('this.expenseItems');
-        // console.log(this.expenseItems);
-    })
-
 </script>
 
 <style>
