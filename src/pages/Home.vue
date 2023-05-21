@@ -4,23 +4,26 @@
       <q-banner dense inline-actions class="text-white bg-red">
         Total
         <template v-slot:action>
-          4270.00
+          {{ (storeAccounting.total).toFixed(2) }}
         </template>
       </q-banner>
     </div>
-    <q-card class="my-card full-width">
+    <div>
       <CardItems />
-    </q-card>
+    </div>
     
   </q-page>
 </template>
 
 <script setup>
-import CardItems from './home/CardItems.vue'
+import CardItems from '../components/home/CardItems.vue'
 import { useAccountingStore } from 'stores/accounting'
-import { storeToRefs } from 'pinia';
-import { ref } from 'vue'
+import { onMounted } from 'vue';
 const storeAccounting= useAccountingStore();
+onMounted(() => {
+  // storeAccounting.getDataTest()
+  // storeAccounting.postDataTest()
+})
 </script>
 <style>
 </style>
