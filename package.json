@@ -11,11 +11,14 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "pinia": "^2.0.11",
     "@quasar/extras": "^1.0.0",
+    "axios": "^1.4.0",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
+    "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
+    "vue-lodash": "^2.1.2",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {

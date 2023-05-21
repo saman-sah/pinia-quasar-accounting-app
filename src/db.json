@@ -1,0 +1,42 @@
+{
+    "users": {
+        "saman":[
+            {            
+                "id": 1,
+                "type": "expense",
+                "title": "Food & Drinks",
+                "amount": 250,
+                "time": "21: 30",
+                "date": "19 May 2021",
+                "img": "./assets/images/income.svg"
+            },
+            {
+                "id": 2,       
+                "type": "incom",
+                "title": "Salary",
+                "amount": 2500,
+                "time": "21: 30",
+                "date": "20 May 2023",
+                "img": "./assets/images/income.svg"
+            },
+            {
+                "id": 3,       
+                "type": "expense",
+                "title": "Travel",
+                "amount": 2500,
+                "time": "21: 30",
+                "date": "21 May 2022",
+                "img": "./assets/images/income.svg"
+            },
+            {
+                "id": 4,       
+                "type": "expense",
+                "title": "Other",
+                "amount": 2500,
+                "time": "21: 30",
+                "date": "21 May 2022",
+                "img": "./assets/images/income.svg"
+            }
+        ]
+    }
+}
