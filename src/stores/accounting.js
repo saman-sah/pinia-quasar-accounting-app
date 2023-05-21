@@ -5,7 +5,6 @@ import axios from 'axios'
 export const useAccountingStore = defineStore('accounting', {
   state: () => ({
     saman: db.users.saman,
-    base_url: 'http://localhost:3000/',
   }),
   getters: {
     sortedItems: (state) => {
@@ -40,6 +39,21 @@ export const useAccountingStore = defineStore('accounting', {
         total+=item.amount
       });
       return total
+    },
+    getIncomes:(state)=> {
+      const filteredList = state.saman.filter((item) => item.type === "income")
+      console.log(filteredList);
+      return filteredList
+    },
+    getExpense:(state)=> {
+      const filteredList = state.saman.filter((item) => item.type === "expense")
+      console.log(filteredList);
+      return filteredList
+    },
+    getDebts:(state)=> {
+      const filteredList = state.saman.filter((item) => item.type === "debt")
+      console.log(filteredList);
+      return filteredList
     }
   },
   actions: {
@@ -52,7 +66,7 @@ export const useAccountingStore = defineStore('accounting', {
         this.total -=payload.action
         this.total.toFixed(2)
       }      
-    },
+    },    
     getDataTest() {
       axios.get('http://localhost:3000/users',{
         headers: {

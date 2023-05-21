@@ -52,8 +52,8 @@ import CreateNewStep2 from './modals/CreateNewStep2.vue'
       icon: 'add'
     },
     {
-      title: 'Wallet',
-      href: '/expend',
+      title: 'Debt',
+      href: '/debt',
       src: './assets/images/wallet.svg'
     },
     {

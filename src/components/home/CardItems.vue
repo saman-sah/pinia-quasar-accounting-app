@@ -17,7 +17,7 @@
                     <div class="left-section row">
                         <q-item-section avatar>
                             <q-avatar>
-                                <img :src="item.img">
+                                <q-img :src="item.img" />
                             </q-avatar>
                         </q-item-section>
                         <q-item-section>
