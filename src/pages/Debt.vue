@@ -1,6 +1,6 @@
 <template>
     <q-page class="q-pa-sm column ">
-        <q-card class="my-card q-mb-md" v-for="item in incoms" 
+        <q-card class="my-card q-mb-md" v-for="item in debts" 
             :key="item.title">
             <q-card-section 
             class="bg-grey-8 text-white q-pa-sm row justify-between">
@@ -33,8 +33,8 @@
 import { useAccountingStore } from 'stores/accounting'
 import { onMounted, ref } from 'vue';
 const storeAccounting= useAccountingStore();
-const incoms=ref(null)
+const debts=ref(null)
 onMounted(() => {
-    incoms.value=storeAccounting.getIncomes
+    debts.value=storeAccounting.getDebts
 })
 </script>

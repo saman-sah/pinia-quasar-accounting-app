@@ -12,7 +12,7 @@
             },
             {
                 "id": 2,       
-                "type": "incom",
+                "type": "income",
                 "title": "Salary",
                 "amount": 2500,
                 "time": "21: 30",
@@ -30,9 +30,18 @@
             },
             {
                 "id": 4,       
-                "type": "expense",
+                "type": "income",
                 "title": "Other",
                 "amount": 2500,
+                "time": "21: 30",
+                "date": "21 May 2022",
+                "img": "./assets/images/income.svg"
+            },
+            {
+                "id": 4,       
+                "type": "debt",
+                "title": "Other",
+                "amount": 400,
                 "time": "21: 30",
                 "date": "21 May 2022",
                 "img": "./assets/images/income.svg"
