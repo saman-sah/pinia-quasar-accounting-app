@@ -1,9 +1,17 @@
 <template>
     <q-page class="q-pa-sm column ">
+        <div class="total q-mb-md">
+            <q-banner dense inline-actions class="text-white bg-secondary" rounded>
+                <span class="text-h6">Total</span>
+                <template v-slot:action>
+                    <span class="text-h6">{{ (storeAccounting.total).toFixed(2) }}</span>
+                </template>
+            </q-banner>
+        </div>
         <q-card class="my-card q-mb-md" v-for="item in expenses" 
             :key="item.title">
             <q-card-section 
-            class="bg-grey-8 text-white q-pa-sm row justify-between">
+            class="bg-primary text-white q-pa-sm row justify-between">
                 <div class="date">          
                     <div class="text-subtitle2">{{ item.date }}</div>
                 </div>
@@ -12,17 +20,17 @@
                 </div>
             </q-card-section>
         
-            <q-card-actions class=" bg-blue-grey-3 row justify-between q-pa-none q-pr-sm" >
+            <q-card-actions class="row justify-between q-pa-none q-pr-sm" >
                 <div class="left row items-center">
                     <q-avatar>
                         <q-img :src="item.img" width="25px" />
                     </q-avatar>
                     <div class="title">
-                        {{ item.title }}
+                        <strong>{{ item.title }}</strong>
                     </div>
                 </div>
                 <div class="right">
-                    00.00
+                    <strong>{{ (item.amount).toFixed(2) }}</strong>
                 </div>
             </q-card-actions>
         </q-card>

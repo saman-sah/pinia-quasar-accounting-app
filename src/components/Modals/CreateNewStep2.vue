@@ -1,86 +1,95 @@
 <template>
     <div class="q-pa-md full-width">
-        <q-card class="my-card">
+        <q-card class="my-card ">
             <!-- Title Selected Item -->
             <q-card-section>
-                <q-chip class="full-width">
-                    <q-avatar  text-color="white" size="lg">
-                        <img :src="dataStep1.data.src">
-                    </q-avatar>
-                    {{ dataStep1.data.title }}
-                </q-chip>
+                <q-card class="my-card row justify-between items-center card-new-item" flat bordered>
+                    <q-card-section class="q-py-xs">
+                        <div class="text-h6">
+                            {{ dataStep1.data.title }}
+                        </div>
+                        <div class="text-caption text-grey">
+                            {{ dataStep1.type }}
+                        </div>
+                    </q-card-section>
+
+                    <q-card-section class="q-py-xs">
+                        <q-img
+                            class="rounded-borders"
+                            :src="dataStep1.data.src"
+                            style="width: 40px"
+                        />
+                    </q-card-section>
+                </q-card>
             </q-card-section>
+
             <!-- Selected Time -->
             <q-card-section class="q-pt-none">
-                <q-chip class="full-width">
-                    <q-avatar  text-color="white" size="lg">
-                        <q-btn icon="access_time" round color="primary">
-                            <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
-                                <q-time v-model="dataItem.time">
-                                <div class="row items-center justify-between q-gutter-sm">
-                                    <q-btn label="Cancel" color="primary" flat v-close-popup />
-                                    <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
-                                </div>
+                <q-input v-model="dataItem.time" outlined label-color="secondary" mask="time" :rules="['time']" label="Time">
+                    <template v-slot:append>
+                        <q-icon name="access_time" class="cursor-pointer">
+                            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                                <q-time v-model="dataItem.time" bordered>
+                                    <div class="row items-center justify-end">
+                                        <q-btn v-close-popup label="Close" color="primary" />
+                                    </div>
                                 </q-time>
                             </q-popup-proxy>
-                        </q-btn>
-                    </q-avatar>
-                    {{ dataItem.time }}
-                </q-chip>
-
+                        </q-icon>
+                    </template>
+                </q-input>
             </q-card-section>
+
             <!-- Selected Date -->
             <q-card-section class="q-pt-none">
-                <q-chip class="full-width">
-                    <q-avatar text-color="white" size="lg">
-                        <q-btn icon="event" round color="primary">
-                            <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
+                <q-input v-model="dataItem.date" label-color="secondary" mask="date" :rules="['date']" outlined label="Date">
+                    <template v-slot:append>
+                        <q-icon name="event" class="cursor-pointer">
+                            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
                                 <q-date v-model="dataItem.date">
-                                <div class="row items-center justify-end q-gutter-sm">
-                                    <q-btn label="Cancel" color="primary" flat v-close-popup />
-                                    <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
-                                </div>
+                                    <div class="row items-center justify-end">
+                                        <q-btn v-close-popup label="Close" color="primary"  />
+                                    </div>
                                 </q-date>
                             </q-popup-proxy>
-                        </q-btn>
-                    </q-avatar>
-                    {{ dataItem.date }}
-                </q-chip>
-
+                        </q-icon>
+                    </template>
+                </q-input>
             </q-card-section>
+
             <q-card-section class="q-pt-none">
-                <q-input
-                v-model.number="dataItem.amount"
-                type="number"
-                outlined
-                />
+                <q-input bottom-slots v-model.number="dataItem.amount" label-color="secondary" label="Amount" outlined>
+                    <template v-slot:append>
+                        <q-btn 
+                        round 
+                        dense 
+                        flat 
+                        icon="send" 
+                        @click="create()" 
+                        v-close-popup
+                        />
+                    </template>
+                </q-input>
             </q-card-section>
 
             <q-separator />
-
-            <q-card-actions align="right">
-            <!-- <q-btn v-close-popup flat color="primary" label="Reserve" /> -->
-                <q-btn 
-                color="primary" 
-                label="Create" 
-                @click="create()"
-                v-close-popup/>
-            </q-card-actions>
         </q-card>
-        </div>
+    </div>
 </template>
 <script setup>
 import { defineProps,reactive, toRefs } from "vue"
     let currentTime= new Date();
+    const { dataStep1 }= toRefs(props)
     const props = defineProps({
         dataStep1: Object,
     })
-    const { dataStep1 }= toRefs(props)
-    let currentDate= currentTime.toUTCString().slice(5, 16);
+    var DD = String(currentTime.getDate()).padStart(2, '0');
+    var MM = String(currentTime.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var YYYY = currentTime.getFullYear();
     const dataItem= reactive({
         time: currentTime.getHours() + ":" + currentTime.getMinutes(),
-        date: currentDate,     
-        amount: 0   
+        date: YYYY +'/'+ MM +'/'+ DD,     
+        amount: 0
     })
     function create() {
         console.log('creat this.dataItem');
@@ -90,5 +99,8 @@ import { defineProps,reactive, toRefs } from "vue"
     }
 </script>
 <style>
+.card-new-item {
+    border: 3px solid #6619d1;
+}
 </style>
     

@@ -2,13 +2,13 @@
   <div class="row justify-around no-wrap footer-links">    
     <q-item class="column link-item justify-center items-center"
      v-for="(link, index) in linksList"
-    :key="index"
+    :key="index+link.title"
     clickable
     tag="a"
     :to="link.href">
       <q-item-section avatar class="q-pa-none q-px-sm">
         <q-avatar v-if="link.src" rounded>
-          <img  :src="link.src" class="absolute-center">
+          <q-img  :src="link.src" class="absolute-center" />
         </q-avatar>
         <q-btn v-else @click="createNewStep1 = true" 
         outline round 
@@ -41,12 +41,12 @@ import CreateNewStep2 from './modals/CreateNewStep2.vue'
     {
       title: 'Home',
       href: '/',
-      src: './assets/images/income.svg'
+      src: './assets/icons/home-icon.png'
     },    
     {
-      title: 'Expend',
+      title: 'Expenses',
       href: '/expend',
-      src: './assets/images/save.svg'
+      src: './assets/icons/menu-expenses.png'
     },
     {      
       icon: 'add'
@@ -54,29 +54,23 @@ import CreateNewStep2 from './modals/CreateNewStep2.vue'
     {
       title: 'Debt',
       href: '/debt',
-      src: './assets/images/wallet.svg'
+      src: './assets/icons/lend.png'
     },
     {
-      title: 'Income',
+      title: 'Incomes',
       href: '/income',
-      src: './assets/images/income.svg'
+      src: './assets/icons/other-income.png'
     },
   ]
   
   function step2(params) {
     this.createNewStep2= true
     this.dataStep1= params;
-    console.log('dataStep1');
-    console.log(this.dataStep1);
   }
 </script>
 <style>
-/* .footer-links {
-  width:100%;
-  overflow-x: auto;
-} */
 .link-item img {
-  width: 35px !important;
-  margin: auto;
+  /* width: 35px !important;
+  margin: auto; */
 }
 </style>

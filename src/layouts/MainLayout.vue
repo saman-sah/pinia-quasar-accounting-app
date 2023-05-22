@@ -1,18 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="bg-blue-grey-14">
-      <q-toolbar>
+    <q-header elevated class="text-secondary">
+      <q-toolbar class="bg-dark">
       <!-- btn toggle menu sidebar -->
         <strong>Accounting App</strong>
-        <!-- heading title link to home -->
-        <q-item clickable tag="a" to="/">
-          <q-item-section>
-            <q-item-label class="q-color-white">Accounting App</q-item-label>
-          </q-item-section>
-        </q-item>
       </q-toolbar>
     </q-header>
-    <q-footer elevated class="bg-blue-grey-14">
+    <q-footer elevated class="bg-dark">
         <q-toolbar>
           <q-toolbar-title><nav-menu/></q-toolbar-title>
         </q-toolbar>

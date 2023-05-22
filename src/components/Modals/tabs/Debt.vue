@@ -10,7 +10,7 @@
         v-close-popup>
             <div class="row">
                 <q-item-section avatar>
-                    <q-avatar rounded class="img-icon-items bg-blue">
+                    <q-avatar rounded class="img-icon-items main-item">
                         <q-img
                         :src="item.src"
                         :ratio="1"
@@ -35,11 +35,3 @@ import { onMounted } from 'vue'
     })
 
 </script>
-
-<style>
-.img-icon-items {
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    
-}
-</style>
