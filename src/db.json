@@ -6,45 +6,45 @@
                 "type": "expense",
                 "title": "Food & Drinks",
                 "amount": 250,
-                "time": "21: 30",
+                "time": "21:30",
                 "date": "19 May 2021",
-                "img": "./assets/images/income.svg"
+                "img": "./assets/icons/food.png"
             },
             {
                 "id": 2,       
                 "type": "income",
                 "title": "Salary",
                 "amount": 2500,
-                "time": "21: 30",
+                "time": "21:30",
                 "date": "20 May 2023",
-                "img": "./assets/images/income.svg"
+                "img": "./assets/icons/salary.png"
             },
             {
                 "id": 3,       
                 "type": "expense",
                 "title": "Travel",
                 "amount": 2500,
-                "time": "21: 30",
+                "time": "21:30",
                 "date": "21 May 2022",
-                "img": "./assets/images/income.svg"
+                "img": "./assets/icons/travel.png"
             },
             {
                 "id": 4,       
                 "type": "income",
                 "title": "Other",
                 "amount": 2500,
-                "time": "21: 30",
+                "time": "21:30",
                 "date": "21 May 2022",
-                "img": "./assets/images/income.svg"
+                "img": "./assets/icons/other-income.png"
             },
             {
-                "id": 4,       
+                "id": 5,       
                 "type": "debt",
-                "title": "Other",
+                "title": "lend",
                 "amount": 400,
-                "time": "21: 30",
+                "time": "21:30",
                 "date": "21 May 2022",
-                "img": "./assets/images/income.svg"
+                "img": "./assets/icons/lend.png"
             }
         ]
     }

@@ -2,37 +2,89 @@
     "expense": {
         "basics" : {
             "title": "Basics",
-            "src": "./assets/images/income.svg",
+            "src": "./assets/icons/groceries.png",
             "subItems" : {
                 "0":{
                     "title": "Food & Drinks",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/food.png"
                 },
                 "1":{
                     "title": "Bill",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/bill.png"
                 },
                 "2":{
                     "title": "Transport",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/transport.png"
+                },
+                "3":{
+                    "title": "House Rent",                    
+                    "src": "./assets/icons/house-rent.png"
+                },
+                "4":{
+                    "title": "Fix & Maintenance",                    
+                    "src": "./assets/icons/maintenance.png"
+                },
+                "5":{
+                    "title": "Utilities",                    
+                    "src": "./assets/icons/utilities.png"
+                },
+                "6":{
+                    "title": "Groceries",                    
+                    "src": "./assets/icons/groceries.png"
                 }
             }
         },
         "enjoyment" : {
             "title": "Enjoyment",
-            "src": "./assets/images/income.svg",
+            "src": "./assets/icons/party.png",
             "subItems" : {
                 "0": {
                     "title": "Entertainment",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/entertainment.png"
                 },
                 "1": {
                     "title": "Fashion",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/fashion.png"
                 },
                 "2": {
                     "title": "Travel",                    
-                    "src": "./assets/images/income.svg"
+                    "src": "./assets/icons/travel.png"
+                },
+                "3": {
+                    "title": "Beauty Care",                    
+                    "src": "./assets/icons/beauty-care.png"
+                },
+                "4": {
+                    "title": "Party",                    
+                    "src": "./assets/icons/party.png"
+                }
+            }
+        },
+        "HealthCare" : {
+            "title": "HealthCare",
+            "src": "./assets/icons/health-care.png",
+            "subItems" : {
+                "0": {
+                    "title": "Doctor",                    
+                    "src": "./assets/icons/doctor.png"
+                },
+                "1": {
+                    "title": "Sport",                    
+                    "src": "./assets/icons/sport.png"
+                },
+                "2": {
+                    "title": "Insurance",                    
+                    "src": "./assets/icons/insurance.png"
+                }
+            }
+        },
+        "Give" : {
+            "title": "Give",
+            "src": "./assets/icons/party.png",
+            "subItems" : {
+                "0": {
+                    "title": "Gift",                    
+                    "src": "./assets/icons/gift.png"
                 }
             }
         }
@@ -40,37 +92,25 @@
     "incomes": {
         "salary" : {
             "title": "Salary",
-            "src": "./assets/images/income.svg"
+            "src": "./assets/icons/salary.png"
         },
         "award" : {
             "title": "Award",
-            "src": "./assets/images/income.svg"
-        },
-        "interest" : {
-            "title": "Interest",
-            "src": "./assets/images/income.svg"
+            "src": "./assets/icons/award.png"
         },
         "otherIncoms" : {
             "title": "Other Incoms",
-            "src": "./assets/images/income.svg"
+            "src": "./assets/icons/other-income.png"
         }
     },
     "debts": {
         "lend" : {
             "title": "Lend",
-            "src": "./assets/images/income.svg"
-        },
-        "repayment" : {
-            "title": "Repayment",
-            "src": "./assets/images/income.svg"
+            "src": "./assets/icons/lend.png"
         },
         "borrow" : {
             "title": "Borrow",
-            "src": "./assets/images/income.svg"
-        },
-        "debtCollection" : {
-            "title": "Debt Collection",
-            "src": "./assets/images/income.svg"
+            "src": "./assets/icons/borrow.png"
         }
     }
 }
