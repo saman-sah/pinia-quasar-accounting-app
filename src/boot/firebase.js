@@ -27,12 +27,12 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHRnuI7G-Tb9dG4kr-pPPlqHPN0viNTRo",
+  apiKey: "",
   authDomain: "accounting-app-4240c.firebaseapp.com",
   projectId: "accounting-app-4240c",
   storageBucket: "accounting-app-4240c.appspot.com",
-  messagingSenderId: "947003439190",
-  appId: "1:947003439190:web:3bcef371d64684c9fde3f7"
+  messagingSenderId: "",
+  appId: ""
 }
 
 let firebaseApp = firebase.initializeApp(firebaseConfig);
