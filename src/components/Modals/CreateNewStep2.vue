@@ -78,6 +78,8 @@
 </template>
 <script setup>
 import { defineProps,reactive, toRefs } from "vue"
+import { useFirebaseStore } from 'stores/firebase'
+const storeFirebase= useFirebaseStore();
     let currentTime= new Date();
     const { dataStep1 }= toRefs(props)
     const props = defineProps({
@@ -92,10 +94,10 @@ import { defineProps,reactive, toRefs } from "vue"
         amount: 0
     })
     function create() {
-        console.log('creat this.dataItem');
         this.dataItem.title= this.dataStep1.data.title
-        console.log(this.dataStep1.type);
-        console.log(this.dataItem);
+        this.dataItem.type= this.dataStep1.type
+        this.dataItem.img= this.dataStep1.data.src
+        storeFirebase.createNewItem(this.dataItem);
     }
 </script>
 <style>

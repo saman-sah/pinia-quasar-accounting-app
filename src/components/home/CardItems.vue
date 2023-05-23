@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card q-mb-md" v-for="(items,key) in storeAccounting.getSortedItems"
+    <q-card class="my-card q-mb-md" v-for="(items,key) in storeFirebase.getSortedItems"
     :key="key">
         <q-card-section 
         class="bg-primary text-white q-pa-sm row justify-between">
@@ -39,7 +39,9 @@
   
 <script setup>
 import { useAccountingStore } from 'stores/accounting'
+import { useFirebaseStore } from 'stores/firebase'
 const storeAccounting= useAccountingStore();
+const storeFirebase= useFirebaseStore();
    
 </script>
   
