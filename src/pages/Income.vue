@@ -1,5 +1,5 @@
 <template>
-    <q-page class="q-pa-sm column ">
+    <q-page class="q-pa-md column ">
         <div class="total q-mb-md">
             <q-banner dense inline-actions class="text-white bg-secondary" rounded>
                 <span class="text-h6">Total</span>

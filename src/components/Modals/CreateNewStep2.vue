@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md full-width">
+    <div class="q-pa-md full-width" id="modal_step_2">
         <q-card class="my-card ">
             <!-- Title Selected Item -->
             <q-card-section>

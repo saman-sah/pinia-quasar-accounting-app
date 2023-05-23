@@ -4,10 +4,21 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/', component: () => import('pages/Home.vue') },
-      { path: '/income', component: () => import('pages/Income.vue') },
-      { path: '/expend', component: () => import('pages/Expense.vue') },
-      { path: '/debt', component: () => import('pages/Debt.vue') }
+      { 
+        path: '/', component: () => import('pages/Home.vue'),
+      },
+      { 
+        path: '/income', component: () => import('pages/Income.vue'),
+      },
+      { 
+        path: '/expend', component: () => import('pages/Expense.vue'),
+      },
+      { 
+        path: '/debt', component: () => import('pages/Debt.vue') ,
+      },
+      { 
+        path: '/login', component: () => import('pages/Login.vue') 
+      },
     ]
   },
 

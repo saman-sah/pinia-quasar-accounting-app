@@ -2,9 +2,11 @@
   <router-view />
 </template>
 
-<script>
-export default {
-  setup() {
-  }
-}
+<script setup>
+import { onBeforeMount } from 'vue';
+import { useFirebaseStore } from 'stores/firebase'
+const storeFirebase= useFirebaseStore();
+onBeforeMount(()=> {
+  storeFirebase.handleAuthStateChange();
+})
 </script>
