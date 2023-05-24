@@ -1,14 +1,14 @@
 <template>
-    <q-page class="q-pa-md column ">
+    <q-page class="q-pa-md column" v-if="storeFirebase.getIncomes && storeFirebase.getIncomes.total >0">
         <div class="total q-mb-md">
             <q-banner dense inline-actions class="text-white bg-secondary" rounded>
                 <span class="text-h6">Total</span>
                 <template v-slot:action>
-                    <span class="text-h6">{{ (storeAccounting.total).toFixed(2) }}</span>
+                    <span class="text-h6">{{ (storeFirebase.getIncomes.total).toFixed(2) }}</span>
                 </template>
             </q-banner>
         </div>
-        <q-card class="my-card q-mb-md" v-for="item in incoms" 
+        <q-card class="my-card q-mb-md" v-for="item in storeFirebase.getIncomes.items" 
             :key="item.title">
             <q-card-section 
             class="bg-primary text-white q-pa-sm row justify-between">
@@ -38,11 +38,6 @@
 </template>
 
 <script setup>
-import { useAccountingStore } from 'stores/accounting'
-import { onMounted, ref } from 'vue';
-const storeAccounting= useAccountingStore();
-const incoms=ref(null)
-onMounted(() => {
-    incoms.value=storeAccounting.getIncomes
-})
+import { useFirebaseStore } from 'stores/firebase'
+const storeFirebase= useFirebaseStore();
 </script>
