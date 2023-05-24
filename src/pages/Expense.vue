@@ -1,5 +1,5 @@
 <template>
-    <q-page v-if="storeFirebase.getExpense && storeFirebase.getExpense.total >0"
+    <q-page v-if="storeFirebase.getExpense"
     class="q-pa-md column">
         <div class="total q-mb-md">
             <q-banner dense inline-actions class="text-white bg-secondary" rounded>

@@ -18,7 +18,7 @@
                         />
                     </q-avatar>
                 </q-item-section>
-                <q-item-section>{{ item.title }}</q-item-section>
+                <q-item-section>{{ item.title }}</q-item-section>                
             </div>
         </q-item>
     </q-list>

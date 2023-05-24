@@ -1,5 +1,5 @@
 <template>
-    <q-page v-if="storeFirebase.getDebts && storeFirebase.getDebts.total >0"
+    <q-page v-if="storeFirebase.getDebts"
     class="q-pa-md column">
         <div class="total q-mb-md">
             <q-banner dense inline-actions class="text-white bg-secondary" rounded>
@@ -28,6 +28,7 @@
                     </q-avatar>
                     <div class="title">
                         <strong>{{ item.title }}</strong>
+                        <q-chip outline  size="12px" color="secondary" >{{ item.name }}</q-chip>
                     </div>
                 </div>
                 <div class="right">

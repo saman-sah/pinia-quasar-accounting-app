@@ -57,6 +57,12 @@
                 </q-input>
             </q-card-section>
 
+            <q-card-section class="q-pt-none" v-if="dataStep1.type== 'debt'">
+                <q-input bottom-slots v-model="dataItem.name" label-color="secondary" label="Name" outlined>
+                    
+                </q-input>
+            </q-card-section>
+
             <q-card-section class="q-pt-none">
                 <q-input bottom-slots v-model.number="dataItem.amount" label-color="secondary" label="Amount" outlined>
                     <template v-slot:append>
@@ -77,13 +83,15 @@
     </div>
 </template>
 <script setup>
-import { defineProps,reactive, toRefs } from "vue"
+import { reactive, toRefs } from "vue"
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
     let currentTime= new Date();
     const { dataStep1 }= toRefs(props)
-    const props = defineProps({
-        dataStep1: Object,
+    const props =defineProps({
+        dataStep1: {
+            type: Object,
+        }
     })
     var DD = String(currentTime.getDate()).padStart(2, '0');
     var MM = String(currentTime.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -91,12 +99,13 @@ const storeFirebase= useFirebaseStore();
     const dataItem= reactive({
         time: currentTime.getHours() + ":" + currentTime.getMinutes(),
         date: YYYY +'/'+ MM +'/'+ DD,     
-        amount: 0
+        amount: 0,
+        name: '',
+        title: props.dataStep1.data.title ? props.dataStep1.data.title : '',
+        type: props.dataStep1.type ? props.dataStep1.type : '',
+        img: props.dataStep1.data.src ? props.dataStep1.data.src : ''
     })
     function create() {
-        this.dataItem.title= this.dataStep1.data.title
-        this.dataItem.type= this.dataStep1.type
-        this.dataItem.img= this.dataStep1.data.src
         storeFirebase.createNewItem(this.dataItem);
     }
 </script>
