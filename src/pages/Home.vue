@@ -4,7 +4,7 @@
       <q-banner dense inline-actions class="text-white bg-secondary" rounded>
           <span class="text-h6">Total</span>
           <template v-slot:action>
-              <!-- <span class="text-h6">{{ (storeAccounting.total).toFixed(2) }}</span> -->
+              <span class="text-h6" v-if="storeFirebase.items">{{ storeFirebase.total }}</span>
           </template>
       </q-banner>
   </div>
@@ -17,13 +17,8 @@
 
 <script setup>
 import CardItems from '../components/home/CardItems.vue'
-import { useAccountingStore } from 'stores/accounting'
-import { onMounted } from 'vue';
-const storeAccounting= useAccountingStore();
-onMounted(() => {
-  // storeAccounting.getSortedItems
-  // storeAccounting.postDataTest()
-})
+import { useFirebaseStore } from 'stores/firebase'
+const storeFirebase= useFirebaseStore();
 </script>
 <style>
 </style>
