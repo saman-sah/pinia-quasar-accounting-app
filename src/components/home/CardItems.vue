@@ -6,11 +6,14 @@
             <div class="date">          
                 <div class="text-subtitle2">{{ key }}</div>
             </div>
+            <div class="sub-total">          
+                <div class="text-subtitle2">{{ items.subTotal }}</div>
+            </div>
         </q-card-section>
     
         <q-card-actions vertical align="center" class="" >
             <q-list class="full-width">
-                <q-item v-for="(item, key) in items"
+                <q-item v-for="(item, key) in items.items"
                 :key="key"
                 clickable 
                 class="row justify-between">
@@ -24,7 +27,6 @@
                             <strong>
                                 {{ item.title }}
                             </strong>
-                            <!-- <p>{{ item.time }}</p> -->
                         </q-item-section>
                     </div>
                     <div :class="['right-section row items-center text-subtitle2', 

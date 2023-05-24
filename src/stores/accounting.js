@@ -4,13 +4,7 @@ export const useAccountingStore = defineStore('accounting', {
   state: () => ({
   }),
   getters: {
-    // total:(state)=> {
-    //   let total=0
-    //   state.saman.forEach(item => {
-    //     total+=item.amount
-    //   });
-    //   return total
-    // },
+    
     // getIncomes:(state)=> {
     //   const filteredList = state.saman.filter((item) => item.type === "income")
     //   console.log(filteredList);

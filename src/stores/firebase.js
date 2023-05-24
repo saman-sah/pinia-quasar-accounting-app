@@ -19,15 +19,15 @@ export const useFirebaseStore = defineStore('firebase', {
         route: useRoute(),
         router: useRouter(),
         userInfo: null,
-        saman: null
+        items: null
     }),
     getters: {
         getSortedItems: (state) => {
         let dates = [];
-            if(state.saman){
-                // Extract all dates from state.saman objects
-                Object.keys(state.saman).forEach((key) => {
-                    let item = state.saman[key];
+            if(state.items){
+                // Extract all dates from state.items objects
+                Object.keys(state.items).forEach((key) => {
+                    let item = state.items[key];
                     dates.push(item.date);
                 });
                 
@@ -43,16 +43,24 @@ export const useFirebaseStore = defineStore('firebase', {
             
                 // Create an empty object for each unique date
                 datesUnique.forEach((date) => {
-                    objDates[date] = [];
+                    objDates[date] = {
+                        subTotal: 0,
+                        items:[]
+                    };
                 });
             
                 // Assign each item to its corresponding date in objDates
-                Object.keys(state.saman).forEach((keyItem) => {
-                    const item = state.saman[keyItem];
+                Object.keys(state.items).forEach((keyItem) => {
+                    const item = state.items[keyItem];
                     const itemDate = item.date;
                     
                     if (objDates[itemDate]) {
-                    objDates[itemDate].push(item);
+                        objDates[itemDate].items.push(item);
+                        if(item.type== 'income') {
+                            objDates[itemDate].subTotal += item.amount
+                        }else {
+                            objDates[itemDate].subTotal -= item.amount
+                        }
                     }
                 });
                 console.log('objDates');
@@ -61,6 +69,24 @@ export const useFirebaseStore = defineStore('firebase', {
             }
             
         },
+        saman:()=> {
+            return 'total'
+        },
+        total:(state)=> {
+            let total=0
+            if(state.items && Object.keys(state.items)) {
+                Object.keys(state.items).forEach((keyItem) => {
+                    const item = state.items[keyItem];
+                    if(item.type== 'income'){
+                        total+=item.amount
+                    }else {
+                        total-=item.amount
+                    }                    
+                }); 
+                return total               
+            }
+            return '0'
+        },
     },
     actions: {
         createNewItem(data) {
@@ -68,14 +94,6 @@ export const useFirebaseStore = defineStore('firebase', {
             console.log(data);
             if(this.user) {
                 let userId= auth.currentUser.uid
-                // set(ref(db, 'users/' + userId + '/items'), {
-                //     amount: data.amount,
-                //     date: data.date,
-                //     img: data.img,
-                //     time: data.time,
-                //     title: data.title,
-                //     type: data.type
-                // });
                 set(push(ref(db,  'users/' + userId + '/items')), {
                     amount: data.amount,
                     date: data.date,
@@ -86,8 +104,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 });
             }
         },
-            
-        
+                
         // Check User Logged In
         handleAuthStateChange() {        
             auth.onAuthStateChanged(user=> {
@@ -100,9 +117,7 @@ export const useFirebaseStore = defineStore('firebase', {
                     } 
                     onValue(ref(db, 'users/'+ userId), (snapshot) => {
                         const data = snapshot.val();
-                        console.log('database ');
-                        console.log(data);
-                        this.saman=data.items
+                        this.items=data.items
                         this.getSortedItems
                     });
                 }else {                       
