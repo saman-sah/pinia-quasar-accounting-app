@@ -27,10 +27,16 @@
                             <strong>
                                 {{ item.title }}
                             </strong>
+                            <q-chip v-if="item.type== 'debt'"
+                            outline  
+                            size="12px" 
+                            color="secondary" >
+                                {{ item.name }}
+                            </q-chip>
                         </q-item-section>
                     </div>
                     <div :class="['right-section row items-center text-subtitle2', 
-                    item.type== 'expense' ? 'text-negative' : 'text-positive']">
+                    item.type== 'expense'  || item.title== 'Lend' ? 'text-negative' : 'text-positive']">
                         <strong> {{ item.amount.toFixed(2) }}</strong>
                     </div>
                 </q-item>

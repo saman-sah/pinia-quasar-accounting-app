@@ -105,7 +105,7 @@ export const useFirebaseStore = defineStore('firebase', {
                     
                     if (objDates[itemDate]) {
                         objDates[itemDate].items.push(item);
-                        if(item.type== 'income') {
+                        if(item.type== 'income' || item.title== 'Borrow') {
                             objDates[itemDate].subTotal += item.amount
                         }else {
                             objDates[itemDate].subTotal -= item.amount
@@ -121,7 +121,7 @@ export const useFirebaseStore = defineStore('firebase', {
             if(state.items && Object.keys(state.items)) {
                 Object.keys(state.items).forEach((keyItem) => {
                     const item = state.items[keyItem];
-                    if(item.type== 'income'){
+                    if(item.type== 'income' || item.title== 'Borrow'){
                         total+=item.amount
                     }else {
                         total-=item.amount
@@ -143,7 +143,8 @@ export const useFirebaseStore = defineStore('firebase', {
                     img: data.img,
                     time: data.time,
                     title: data.title,
-                    type: data.type
+                    type: data.type,
+                    name: data.name
                 });
             }
             this.stopBar(); 
@@ -211,8 +212,6 @@ export const useFirebaseStore = defineStore('firebase', {
                     email: userData.email,
                     items: {}
                 })
-                console.log('register response', response);
-                console.log(userId);
             })
             .catch(error=> {
                 switch (error.code) {
