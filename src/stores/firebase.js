@@ -19,7 +19,8 @@ export const useFirebaseStore = defineStore('firebase', {
         route: useRoute(),
         router: useRouter(),
         userInfo: null,
-        items: null
+        items: null,
+        bar: null
     }),
     getters: {
         getIncomes:(state)=> {
@@ -111,15 +112,10 @@ export const useFirebaseStore = defineStore('firebase', {
                         }
                     }
                 });
-                console.log('objDates');
-                console.log(objDates);
                 return objDates;
             }
             
-        },
-        saman:()=> {
-            return 'total'
-        },
+        },        
         total:(state)=> {
             let total=0
             if(state.items && Object.keys(state.items)) {
@@ -138,8 +134,7 @@ export const useFirebaseStore = defineStore('firebase', {
     },
     actions: {
         createNewItem(data) {
-            console.log('data');
-            console.log(data);
+            this.startBar(); 
             if(this.user) {
                 let userId= auth.currentUser.uid
                 set(push(ref(db,  'users/' + userId + '/items')), {
@@ -151,12 +146,14 @@ export const useFirebaseStore = defineStore('firebase', {
                     type: data.type
                 });
             }
+            this.stopBar(); 
         },
                 
         // Check User Logged In
         handleAuthStateChange() {        
             auth.onAuthStateChanged(user=> {
                 if(user) {
+                    this.startBar(); 
                     let userId= auth.currentUser.uid 
                     this.user= user;
                     let currentPath=this.route.path
@@ -168,6 +165,7 @@ export const useFirebaseStore = defineStore('firebase', {
                         this.items=data.items
                         this.getSortedItems
                     });
+                    this.stopBar(); 
                 }else {                       
                     this.user= null;
                     this.router.replace('/login')  
@@ -178,6 +176,7 @@ export const useFirebaseStore = defineStore('firebase', {
 
 
         login(userData) {
+            this.startBar(); 
             signInWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 this.user= response.user;
@@ -198,12 +197,12 @@ export const useFirebaseStore = defineStore('firebase', {
                 }
                 return
             })
-            
+            this.stopBar(); 
         },
         
         //Register Firebase Auth
         register(userData) {
-            console.log('register');
+            this.startBar(); 
             createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 let userId= auth.currentUser.uid     
@@ -233,18 +232,37 @@ export const useFirebaseStore = defineStore('firebase', {
                     default:
                         alert("Something went Wrong")
                         
-                    }
-                    return
+                }
+                return
             })
+            this.stopBar(); 
             
         },
 
         //Register Firebase Auth
         logOut() {
+            this.startBar(); 
             signOut(auth).then(res=> {
                 this.user= null
             })    
+            this.stopBar(); 
         },
         //End--------- Logout Firebase Auth
+        
+
+        setBar(bar) {
+            this.bar = bar;
+        },
+        startBar() {
+            if (this.bar) {
+              this.bar.start();
+            }
+        },
+        stopBar() {
+            if (this.bar) {
+              this.bar.stop();
+            }
+        },
+      
     },
 });
