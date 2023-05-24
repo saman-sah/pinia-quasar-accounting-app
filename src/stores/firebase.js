@@ -22,8 +22,56 @@ export const useFirebaseStore = defineStore('firebase', {
         items: null
     }),
     getters: {
+        getIncomes:(state)=> {
+            const filteredList={
+                total:0,
+                items:[]
+            }
+            if(state.items){
+                Object.keys(state.items).forEach((key) => {
+                    let item = state.items[key];
+                    if(item.type== 'income') {
+                        filteredList.items.push(item)
+                        filteredList.total += item.amount
+                    }
+                });
+                return filteredList
+            }
+        },
+        getExpense:(state)=> {
+            const filteredList={
+                total:0,
+                items:[]
+            }
+            if(state.items){
+                Object.keys(state.items).forEach((key) => {
+                    let item = state.items[key];
+                    if(item.type== 'expense') {
+                        filteredList.items.push(item)
+                        filteredList.total += item.amount
+                    }
+                });
+                return filteredList
+            }
+        },
+        getDebts:(state)=> {
+            const filteredList={
+                total:0,
+                items:[]
+            }
+            if(state.items){
+                Object.keys(state.items).forEach((key) => {
+                    let item = state.items[key];
+                    if(item.type== 'debt') {
+                        filteredList.items.push(item)
+                        filteredList.total += item.amount
+                    }
+                });
+                return filteredList
+            }
+        } ,       
         getSortedItems: (state) => {
-        let dates = [];
+            let dates = [];
             if(state.items){
                 // Extract all dates from state.items objects
                 Object.keys(state.items).forEach((key) => {
