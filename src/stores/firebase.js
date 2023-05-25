@@ -10,6 +10,7 @@ import {
     push,
     onValue,
     update,
+    remove,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
@@ -173,6 +174,20 @@ export const useFirebaseStore = defineStore('firebase', {
                 }                                
             }
             this.stopBar(); 
+        },
+
+        deleteItem() {
+            console.log('this.dataStep1.itemKey');
+            console.log(this.dataStep1.itemKey);
+            if(this.user) {
+                this.startBar();
+                let userId= auth.currentUser.uid
+                remove(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey))
+                .then(()=> {
+                    this.showModalStep2= false
+                    this.stopBar();
+                })
+            }
         },
                 
         // Check User Logged In
