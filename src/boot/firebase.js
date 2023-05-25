@@ -18,6 +18,7 @@ import {
   set,
   push,
   update,
+  remove,
   // off,
   // get,
   // child,
@@ -50,6 +51,7 @@ export {
     set,
     push,
     update,
+    remove
     // storage,
     // off,
     // get,

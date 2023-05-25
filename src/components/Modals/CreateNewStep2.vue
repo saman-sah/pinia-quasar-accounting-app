@@ -68,21 +68,42 @@
                 </q-input>
             </q-card-section>
             <q-seperator />
-            <q-card-section class="q-pt-none">
+            <q-card-section class="q-pt-none row justify-between">
                 <q-btn 
-                class="self-end"
                 color="primary" 
                 glossy 
                 :label="storeFirebase.dataStep1.action" 
                 @click="storeFirebase.createNewItem()" 
-                v-close-popup/>                
+                v-close-popup/>
+                <q-btn
+                color="secondary" 
+                glossy 
+                label="Delete" 
+                @click="confirmDelete = true"
+                />
             </q-card-section>
-
+            
+            
             <q-separator />
         </q-card>
+        <q-dialog v-model="confirmDelete" persistent v-if="storeFirebase.dataStep1.action== 'Update'">
+            <q-card>
+                <q-card-section class="row items-center">
+                    <q-avatar icon="delete" color="primary" text-color="white" />
+                    <span class="q-ml-sm">Are you sure to delete this item?</span>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                    <q-btn flat label="Cancel" color="primary" v-close-popup />
+                    <q-btn flat label="Confirm" color="primary" @click="storeFirebase.deleteItem()"  v-close-popup />
+                </q-card-actions>
+            </q-card>
+        </q-dialog>
     </div>
+    
 </template>
 <script setup>
+    import { ref } from 'vue'
     import { useFirebaseStore } from 'stores/firebase'
     const storeFirebase= useFirebaseStore();
     if(storeFirebase.dataStep1.action == 'Create') {
@@ -93,6 +114,7 @@
         storeFirebase.dataStep1.data.time= currentTime.getHours() + ":" + currentTime.getMinutes();
         storeFirebase.dataStep1.data.date= YYYY +'/'+ MM +'/'+ DD;
     }
+    const confirmDelete= ref(false)
 </script>
 <style>
 .card-new-item {
