@@ -76,6 +76,7 @@
                 @click="storeFirebase.createNewItem()" 
                 v-close-popup/>
                 <q-btn
+                v-if="storeFirebase.dataStep1.action== 'Update'"
                 color="secondary" 
                 glossy 
                 label="Delete" 
@@ -86,7 +87,7 @@
             
             <q-separator />
         </q-card>
-        <q-dialog v-model="confirmDelete" persistent v-if="storeFirebase.dataStep1.action== 'Update'">
+        <q-dialog v-model="confirmDelete" persistent>
             <q-card>
                 <q-card-section class="row items-center">
                     <q-avatar icon="delete" color="primary" text-color="white" />

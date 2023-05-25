@@ -25,6 +25,7 @@ export const useFirebaseStore = defineStore('firebase', {
         bar: null,
         showModalStep1: false,
         showModalStep2: false,
+        loading: true,
         dataStep1: {
             type: "",
             data: {
@@ -130,8 +131,7 @@ export const useFirebaseStore = defineStore('firebase', {
                         }
                     }
                 });
-                console.log('objDates');
-                console.log(objDates);
+                state.loading=false
                 return objDates;
             }
             
@@ -151,6 +151,22 @@ export const useFirebaseStore = defineStore('firebase', {
             }
             return '0'
         },
+        clearData: (state)=> {
+            state.dataStep1= {
+                type: "",
+                data: {
+                    time: "",
+                    date: "",    
+                    amount: 0,
+                    name: "",
+                    title:"",
+                    type:"",
+                    img:""
+                },
+                action:'',
+                itemKey: ''
+            }
+        }
     },
     actions: {
         createNewItem() {
@@ -174,6 +190,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 }                                
             }
             this.stopBar(); 
+            this.clearData();
         },
 
         deleteItem() {
@@ -186,13 +203,15 @@ export const useFirebaseStore = defineStore('firebase', {
                 .then(()=> {
                     this.showModalStep2= false
                     this.stopBar();
+                    this.clearData();
                 })
             }
         },
                 
         // Check User Logged In
-        handleAuthStateChange() {        
+        handleAuthStateChange() {
             auth.onAuthStateChanged(user=> {
+                this.loading=true
                 if(user) {
                     this.startBar(); 
                     let userId= auth.currentUser.uid 
