@@ -18,22 +18,9 @@
         @click="onMainClick"
         >
           <q-list>
-            <q-item clickable v-close-popup @click="onItemClick">
-              <q-item-section avatar>
-                <q-avatar icon="assignment" color="secondary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Vacation</q-item-label>
-                <q-item-label caption>February 22, 2016</q-item-label>
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="info" color="amber" />
-              </q-item-section>
-            </q-item>
-
             <q-item clickable v-close-popup @click="storeFirebase.logOut()">
               <q-item-section avatar>
-                <q-avatar icon="logout" color="secondary" text-color="white" />
+                <q-avatar icon="logout" color="secondary" text-color="white" size="sm" />
               </q-item-section>
               <q-item-section>
                 <q-item-label>Logout</q-item-label>
