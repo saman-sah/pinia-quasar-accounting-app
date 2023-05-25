@@ -16,6 +16,7 @@
                 <q-item v-for="(item, key) in items.items"
                 :key="key"
                 clickable 
+                @click="storeFirebase.step2({type: item.type, data: item, action: 'Update', itemKey: key})"
                 class="row justify-between">
                     <div class="left-section row">
                         <q-item-section avatar>
@@ -37,7 +38,7 @@
                     </div>
                     <div :class="['right-section row items-center text-subtitle2', 
                     item.type== 'expense'  || item.title== 'Lend' ? 'text-negative' : 'text-positive']">
-                        <strong> {{ item.amount.toFixed(2) }}</strong>
+                        <strong> {{ item.amount }}</strong>
                     </div>
                 </q-item>
             </q-list>
@@ -46,9 +47,7 @@
   </template>
   
 <script setup>
-import { useAccountingStore } from 'stores/accounting'
 import { useFirebaseStore } from 'stores/firebase'
-const storeAccounting= useAccountingStore();
 const storeFirebase= useFirebaseStore();
    
 </script>

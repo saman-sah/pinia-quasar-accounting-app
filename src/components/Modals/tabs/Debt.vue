@@ -6,13 +6,13 @@
         clickable 
         v-ripple 
         class="column"
-        @click="$emit('step2', {type: 'debt', data: item})"
+        @click="$emit('step2', {type: 'debt', data: item, action: 'Create'})"
         v-close-popup>
             <div class="row">
                 <q-item-section avatar>
                     <q-avatar rounded class="img-icon-items main-item">
                         <q-img
-                        :src="item.src"
+                        :src="item.img"
                         :ratio="1"
                         style="width: 20px"
                         />
