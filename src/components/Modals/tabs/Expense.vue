@@ -9,7 +9,7 @@
                 <q-item-section avatar>
                     <q-avatar rounded class="img-icon-items main-item" size="50px">
                         <q-img
-                        :src="item.src"
+                        :src="item.img"
                         :ratio="1"
                         style="width: 30px"
                         />
@@ -20,13 +20,13 @@
             <q-item v-for="subItem in item.subItems"
             :key="subItem.title+100"
             clickable v-ripple
-            @click="$emit('step2', {type:'expense' , data: subItem})"
+            @click="$emit('step2', {type:'expense' , data: subItem, action: 'Create'})"
             v-close-popup>
                 <q-item-section avatar>
                     <!-- <q-icon color="primary" :name="subItem.icon" /> -->
                     <q-avatar rounded class="img-icon-items nested-item" size="50px">
                         <q-img
-                        :src="subItem.src"
+                        :src="subItem.img"
                         :ratio="1"
                         style="width: 30px"
                         />

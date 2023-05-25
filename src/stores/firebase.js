@@ -9,6 +9,7 @@ import {
     set,
     push,
     onValue,
+    update,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
@@ -20,19 +21,35 @@ export const useFirebaseStore = defineStore('firebase', {
         router: useRouter(),
         userInfo: null,
         items: null,
-        bar: null
+        bar: null,
+        showModalStep1: false,
+        showModalStep2: false,
+        dataStep1: {
+            type: "",
+            data: {
+                time: "",
+                date: "",    
+                amount: 0,
+                name: "",
+                title:"",
+                type:"",
+                img:""
+            },
+            action:'',
+            itemKey: ''
+        },
     }),
     getters: {
         getIncomes:(state)=> {
             const filteredList={
                 total:0,
-                items:[]
+                items:{}
             }
             if(state.items){
                 Object.keys(state.items).forEach((key) => {
                     let item = state.items[key];
                     if(item.type== 'income') {
-                        filteredList.items.push(item)
+                        filteredList.items[key]=item
                         filteredList.total += item.amount
                     }
                 });
@@ -42,13 +59,13 @@ export const useFirebaseStore = defineStore('firebase', {
         getExpense:(state)=> {
             const filteredList={
                 total:0,
-                items:[]
+                items:{}
             }
             if(state.items){
                 Object.keys(state.items).forEach((key) => {
                     let item = state.items[key];
                     if(item.type== 'expense') {
-                        filteredList.items.push(item)
+                        filteredList.items[key]=item
                         filteredList.total += item.amount
                     }
                 });
@@ -58,13 +75,13 @@ export const useFirebaseStore = defineStore('firebase', {
         getDebts:(state)=> {
             const filteredList={
                 total:0,
-                items:[]
+                items:{}
             }
             if(state.items){
                 Object.keys(state.items).forEach((key) => {
                     let item = state.items[key];
                     if(item.type== 'debt') {
-                        filteredList.items.push(item)
+                        filteredList.items[key]=item
                         filteredList.total += item.amount
                     }
                 });
@@ -94,7 +111,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 datesUnique.forEach((date) => {
                     objDates[date] = {
                         subTotal: 0,
-                        items:[]
+                        items:{}
                     };
                 });
             
@@ -104,7 +121,7 @@ export const useFirebaseStore = defineStore('firebase', {
                     const itemDate = item.date;
                     
                     if (objDates[itemDate]) {
-                        objDates[itemDate].items.push(item);
+                        objDates[itemDate].items[keyItem]=item;
                         if(item.type== 'income' || item.title== 'Borrow') {
                             objDates[itemDate].subTotal += item.amount
                         }else {
@@ -112,6 +129,8 @@ export const useFirebaseStore = defineStore('firebase', {
                         }
                     }
                 });
+                console.log('objDates');
+                console.log(objDates);
                 return objDates;
             }
             
@@ -133,19 +152,25 @@ export const useFirebaseStore = defineStore('firebase', {
         },
     },
     actions: {
-        createNewItem(data) {
+        createNewItem() {
             this.startBar(); 
             if(this.user) {
                 let userId= auth.currentUser.uid
-                set(push(ref(db,  'users/' + userId + '/items')), {
-                    amount: data.amount,
-                    date: data.date,
-                    img: data.img,
-                    time: data.time,
-                    title: data.title,
-                    type: data.type,
-                    name: data.name
-                });
+                console.log('this.dataStep1');
+                console.log(this.dataStep1);
+                if(this.dataStep1.action== 'Update') {
+                    update(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey ), this.dataStep1.data);
+                }else {
+                    set(push(ref(db,  'users/' + userId + '/items')), {
+                        amount: this.dataStep1.data.amount,
+                        date: this.dataStep1.data.date,
+                        img: this.dataStep1.data.img,
+                        time: this.dataStep1.data.time,
+                        title: this.dataStep1.data.title,
+                        type: this.dataStep1.type,
+                        name: this.dataStep1.data.name ? this.dataStep1.data.name : ""
+                    });
+                }                                
             }
             this.stopBar(); 
         },
@@ -165,6 +190,10 @@ export const useFirebaseStore = defineStore('firebase', {
                         const data = snapshot.val();
                         this.items=data.items
                         this.getSortedItems
+                        this.userInfo= {
+                            name: data.name,
+                            email: data.email
+                        }
                     });
                     this.stopBar(); 
                 }else {                       
@@ -181,8 +210,6 @@ export const useFirebaseStore = defineStore('firebase', {
             signInWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 this.user= response.user;
-                console.log('this.user');
-                console.log(this.user);
             })
             .catch(error=> {
                 switch (error.code) {
@@ -262,6 +289,10 @@ export const useFirebaseStore = defineStore('firebase', {
               this.bar.stop();
             }
         },
+        step2(params) {
+            this.showModalStep2= true
+            this.dataStep1= params;
+        }
       
     },
 });

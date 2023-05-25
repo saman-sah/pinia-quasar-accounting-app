@@ -10,7 +10,7 @@
         <q-avatar v-if="link.src" rounded>
           <q-img  :src="link.src" class="absolute-center" />
         </q-avatar>
-        <q-btn v-else @click="createNewStep1 = true" 
+        <q-btn v-else @click="storeFirebase.showModalStep1 = true" 
         outline round 
         size="lg" color="white" 
         :icon="link.icon" />
@@ -20,22 +20,21 @@
       </q-item-section>
     </q-item>
   </div>
-  <q-dialog v-model="createNewStep1">
+  <q-dialog v-model="storeFirebase.showModalStep1">
     <CreateNewStep1 
-    @step2="step2($event)"/>
+    @step2="storeFirebase.step2($event)"/>
   </q-dialog>
-  <q-dialog v-model="createNewStep2">
-    <CreateNewStep2 
-    :dataStep1="dataStep1"/>
+  <q-dialog v-model="storeFirebase.showModalStep2">
+    <CreateNewStep2/>
   </q-dialog>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useFirebaseStore } from 'stores/firebase'
+import { ref } from 'vue' 
 import CreateNewStep1 from './modals/CreateNewStep1.vue'
 import CreateNewStep2 from './modals/CreateNewStep2.vue'
-  const createNewStep1=ref(false)
-  const createNewStep2=ref(false)
+const storeFirebase= useFirebaseStore();
   const dataStep1=ref({})
   const linksList = [
     {
@@ -63,10 +62,6 @@ import CreateNewStep2 from './modals/CreateNewStep2.vue'
     },
   ]
   
-  function step2(params) {
-    this.createNewStep2= true
-    this.dataStep1= params;
-  }
 </script>
 <style>
 .link-item img {

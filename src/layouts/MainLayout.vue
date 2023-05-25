@@ -7,13 +7,14 @@
       </div>
       <div v-if="storeFirebase.user" class="user">
         <q-btn-dropdown
+        v-if="storeFirebase.userInfo"
         split
         color="primary"
         push
         glossy
         no-caps
         icon="account_box"
-        :label="'saman'"
+        :label="storeFirebase.userInfo.name"
         @click="onMainClick"
         >
           <q-list>
