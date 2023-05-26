@@ -2,7 +2,7 @@
     <q-page v-if="storeFirebase.getFilteredItems('expense')"
     class="q-pa-md column">
         <div class="total q-mb-md">
-            <q-banner dense inline-actions class="text-white bg-secondary" rounded>
+            <q-banner dense inline-actions class="text-white bg-secondary q-py-xs" rounded>
                 <span class="text-h6">Total</span>
                 <template v-slot:action>
                     <span class="text-h6">{{ (storeFirebase.getFilteredItems('expense').total).toFixed(2) }}</span>
