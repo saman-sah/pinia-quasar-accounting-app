@@ -1,13 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="text-secondary row justify-between items-center bg-dark q-px-lg q-py-md">
+    <q-header elevated class="text-secondary row justify-between items-center bg-dark q-px-lg q-py-sm">
       <div class="logo">
-      <!-- btn toggle menu sidebar -->
-        <strong>Accounting App</strong>
+        <q-item
+        clickable
+        tag="a"
+        to="/">
+          <strong>Accounting App</strong>
+        </q-item>
       </div>
       <div v-if="storeFirebase.user" class="user">
         <q-btn-dropdown
         v-if="storeFirebase.userInfo"
+        size="sm"
         split
         color="primary"
         push
@@ -37,8 +42,15 @@
         </q-toolbar>
     </q-footer>
     
-
-    <q-page-container>
+    
+    <q-page-container>  
+      <div class="q-pt-md q-px-md">    
+        <q-input
+        v-model="storeFirebase.searchedTxt" 
+        label-color="secondary" 
+        label="Search" 
+        outlined/>
+      </div>
       <router-view />
     </q-page-container>
   </q-layout>

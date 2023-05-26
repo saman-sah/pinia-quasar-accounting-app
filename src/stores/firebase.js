@@ -26,6 +26,7 @@ export const useFirebaseStore = defineStore('firebase', {
         showModalStep1: false,
         showModalStep2: false,
         loading: true,
+        searchedTxt: '',
         dataStep1: {
             type: "",
             data: {
@@ -42,55 +43,54 @@ export const useFirebaseStore = defineStore('firebase', {
         },
     }),
     getters: {
-        getIncomes:(state)=> {
+        getFilteredItems:(state)=> (type)=> {
             const filteredList={
                 total:0,
                 items:{}
             }
             if(state.items){
                 Object.keys(state.items).forEach((key) => {
+                    let foundedTitels=[];
                     let item = state.items[key];
-                    if(item.type== 'income') {
-                        filteredList.items[key]=item
-                        filteredList.total += item.amount
+                    if(item.type== type) {
+                        if(state.searchedTxt !=''){
+                            if((item.title).toLowerCase().indexOf(state.searchedTxt)== 0) {
+                                filteredList.items[key]=item
+                                if(item.title== 'Lend') {
+                                    filteredList.total -= item.amount
+                                }else{
+                                    filteredList.total += item.amount
+                                }                                
+                                
+                                foundedTitels.push(item.title)
+                            }else {
+                                const found = foundedTitels.some(el => el === item.title);
+                                if (~(item.title).toLowerCase().indexOf(state.searchedTxt) && !found){
+                                    filteredList.items[key]=item
+                                    if(item.title== 'Lend') {
+                                        filteredList.total -= item.amount
+                                    }else{
+                                        filteredList.total += item.amount
+                                    }
+                                }
+
+                            }                  
+                        }else {
+                            filteredList.items[key]=item
+                            if(item.title== 'Lend') {
+                                filteredList.total -= item.amount
+                            }else{
+                                filteredList.total += item.amount
+                            }
+                        }
+                        
                     }
                 });
                 return filteredList
             }
-        },
-        getExpense:(state)=> {
-            const filteredList={
-                total:0,
-                items:{}
-            }
-            if(state.items){
-                Object.keys(state.items).forEach((key) => {
-                    let item = state.items[key];
-                    if(item.type== 'expense') {
-                        filteredList.items[key]=item
-                        filteredList.total += item.amount
-                    }
-                });
-                return filteredList
-            }
-        },
-        getDebts:(state)=> {
-            const filteredList={
-                total:0,
-                items:{}
-            }
-            if(state.items){
-                Object.keys(state.items).forEach((key) => {
-                    let item = state.items[key];
-                    if(item.type== 'debt') {
-                        filteredList.items[key]=item
-                        filteredList.total += item.amount
-                    }
-                });
-                return filteredList
-            }
-        } ,       
+        },     
         getSortedItems: (state) => {
+            console.log('getSortedItems');
             let dates = [];
             if(state.items){
                 // Extract all dates from state.items objects
@@ -131,10 +131,11 @@ export const useFirebaseStore = defineStore('firebase', {
                         }
                     }
                 });
-                state.loading=false
+                state.loading=false                
                 return objDates;
             }
-            
+            state.loading= false
+            return false
         },        
         total:(state)=> {
             let total=0
@@ -152,6 +153,7 @@ export const useFirebaseStore = defineStore('firebase', {
             return '0'
         },
         clearData: (state)=> {
+            console.log('clear data');
             state.dataStep1= {
                 type: "",
                 data: {
@@ -190,12 +192,10 @@ export const useFirebaseStore = defineStore('firebase', {
                 }                                
             }
             this.stopBar(); 
-            this.clearData();
+            this.clearData;
         },
 
         deleteItem() {
-            console.log('this.dataStep1.itemKey');
-            console.log(this.dataStep1.itemKey);
             if(this.user) {
                 this.startBar();
                 let userId= auth.currentUser.uid
@@ -203,7 +203,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 .then(()=> {
                     this.showModalStep2= false
                     this.stopBar();
-                    this.clearData();
+                    this.clearData;
                 })
             }
         },
@@ -211,7 +211,6 @@ export const useFirebaseStore = defineStore('firebase', {
         // Check User Logged In
         handleAuthStateChange() {
             auth.onAuthStateChanged(user=> {
-                this.loading=true
                 if(user) {
                     this.startBar(); 
                     let userId= auth.currentUser.uid 
@@ -223,7 +222,7 @@ export const useFirebaseStore = defineStore('firebase', {
                     onValue(ref(db, 'users/'+ userId), (snapshot) => {
                         const data = snapshot.val();
                         this.items=data.items
-                        this.getSortedItems
+                        this.getSortedItems;
                         this.userInfo= {
                             name: data.name,
                             email: data.email
