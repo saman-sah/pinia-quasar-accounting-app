@@ -4,7 +4,7 @@
             <q-card class="my-card q-mb-md" v-for="(items,key) in storeFirebase.getSortedItems"
         :key="key">
             <q-card-section 
-            class="bg-primary text-white q-pa-sm row justify-between">
+            class="bg-primary text-white q-px-sm q-py-xs row justify-between">
                 <div class="date">          
                     <div class="text-subtitle2">{{ key }}</div>
                 </div>
@@ -13,19 +13,17 @@
                 </div>
             </q-card-section>
         
-            <q-card-actions vertical align="center" class="" >
+            <q-card-actions vertical align="center" class="q-pa-none" >
                 <q-list class="full-width">
                     <q-item v-for="(item, key) in items.items"
                     :key="key"
                     clickable 
                     @click="storeFirebase.step2({type: item.type, data: item, action: 'Update', itemKey: key})"
-                    class="row justify-between">
+                    class="row justify-between q-px-sm q-py-xs">
                         <div class="left-section row">
-                            <q-item-section avatar>
-                                <q-avatar size="40px">
-                                    <q-img :src="item.img" />
-                                </q-avatar>
-                            </q-item-section>
+                            <q-avatar size="40px">
+                                <q-img :src="item.img" width="35px"/>
+                            </q-avatar>
                             <q-item-section>
                                 <strong>
                                     {{ item.title }}

@@ -69,10 +69,16 @@
             <q-card-section class="q-pt-none">
                 <q-input 
                 bottom-slots 
-                v-model.number="storeFirebase.dataStep1.data.amount" 
+                v-model="storeFirebase.dataStep1.data.amount" 
+                label-slot
                 label-color="secondary" 
-                label="Amount" 
-                outlined />
+                outlined 
+                type="number"
+                prefix="$">
+                <template v-slot:label>
+                <span class="text-secondary">Amount</span>
+                </template>
+                </q-input>
             </q-card-section>
             <q-seperator />
             <q-card-section class="q-pt-none row justify-between">
