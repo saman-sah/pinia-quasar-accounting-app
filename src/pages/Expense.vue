@@ -12,7 +12,7 @@
         <q-card class="my-card q-mb-md" v-for="(item, key) in storeFirebase.getFilteredItems('expense').items" 
             :key="key">            
             <q-card-section 
-            class="bg-primary text-white q-pa-sm q-px-md row justify-between">
+            class="bg-primary text-white q-px-sm q-py-xs row justify-between">
                 <div class="date">          
                     <div class="text-subtitle2">{{ item.date }}</div>
                 </div>
@@ -21,18 +21,16 @@
                 </div>
             </q-card-section>
         
-            <q-card-actions class="row justify-between q-pa-none q-pr-sm" >
+            <q-card-actions class="row justify-between q-pa-none" >
                 <q-list class="full-width">
                     <q-item 
                     clickable 
                     @click="storeFirebase.step2({type: item.type, data: item, action: 'Update', itemKey: key})"
-                    class="row justify-between items-center">
+                    class="row justify-between items-center q-px-sm q-py-xs">
                         <div class="left row items-center">
-                            <q-item-section avatar>
-                                <q-avatar size="40px">
-                                    <q-img :src="item.img"/>
-                                </q-avatar>
-                            </q-item-section>
+                            <q-avatar size="35px" class="q-mr-xs">
+                                <q-img :src="item.img" width="35px"/>
+                            </q-avatar>
                             <div class="title">
                                 <strong>{{ item.title }}</strong>
                             </div>

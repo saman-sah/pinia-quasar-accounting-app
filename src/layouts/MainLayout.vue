@@ -1,13 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="text-secondary row justify-between items-center bg-dark q-px-lg q-py-sm">
-      <div class="logo">
-        <q-item
-        clickable
-        tag="a"
-        to="/">
-          <strong>Accounting App</strong>
-        </q-item>
+      <div class="search">  
+        <q-input
+        v-model="storeFirebase.searchedTxt" 
+        label-color="secondary" 
+        placeholder="Search" 
+        color="secondary"
+        text-color="secondary"
+        dense>
+        <template v-slot:prepend>
+          <q-icon color="secondary" name="search" />
+        </template>
+        </q-input>
       </div>
       <div v-if="storeFirebase.user" class="user">
         <q-btn-dropdown
@@ -43,14 +48,7 @@
     </q-footer>
     
     
-    <q-page-container>  
-      <div class="q-pt-md q-px-md">    
-        <q-input
-        v-model="storeFirebase.searchedTxt" 
-        label-color="secondary" 
-        label="Search" 
-        outlined/>
-      </div>
+    <q-page-container>        
       <router-view />
     </q-page-container>
   </q-layout>
@@ -60,5 +58,9 @@
 import navMenu from 'components/Menu.vue'
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
-
 </script>
+<style>
+.search input{
+  color: #ff6f00;
+}
+</style>

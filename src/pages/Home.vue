@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md column">
     <div class="total q-mb-md" v-if="storeFirebase.items && Object.keys(storeFirebase.items)">
-      <q-banner dense inline-actions class="text-white bg-secondary" rounded>
+      <q-banner dense inline-actions class="text-white bg-secondary q-py-xs" rounded>
           <span class="text-h6">Total</span>
           <template v-slot:action>
               <span class="text-h6" v-if="storeFirebase.items">{{ storeFirebase.total }}</span>
