@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { useRouter } from "vue-router";
 import { useRoute } from 'vue-router'
+import { Notify } from 'quasar'
 import _ from 'lodash'
 import { 
     auth, 
@@ -178,7 +179,17 @@ export const useFirebaseStore = defineStore('firebase', {
                 console.log('this.dataStep1');
                 console.log(this.dataStep1);
                 if(this.dataStep1.action== 'Update') {
-                    update(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey ), this.dataStep1.data);
+                    update(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey ), 
+                    this.dataStep1.data).then(()=> {
+                        this.stopBar();
+                        Notify.create({
+                            message: 'The transaction was updated',
+                            caption: this.dataStep1.data.title,
+                            color: 'primary',
+                            timeout: '1500'
+                        })
+                        this.clearData;
+                    })
                 }else {
                     set(push(ref(db,  'users/' + userId + '/items')), {
                         amount: this.dataStep1.data.amount,
@@ -188,11 +199,18 @@ export const useFirebaseStore = defineStore('firebase', {
                         title: this.dataStep1.data.title,
                         type: this.dataStep1.type,
                         name: this.dataStep1.data.name ? this.dataStep1.data.name : ""
-                    });
+                    }).then(()=> {
+                        this.stopBar();                       
+                        Notify.create({
+                            message: 'The transaction was created',
+                            caption: this.dataStep1.data.title,
+                            color: 'primary',
+                            timeout: '1500'
+                        })
+                        this.clearData;
+                    })
                 }                                
-            }
-            this.stopBar(); 
-            this.clearData;
+            }            
         },
 
         deleteItem() {
@@ -201,7 +219,13 @@ export const useFirebaseStore = defineStore('firebase', {
                 let userId= auth.currentUser.uid
                 remove(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey))
                 .then(()=> {
-                    this.showModalStep2= false
+                    this.showModalStep2= false;
+                    Notify.create({
+                        message: 'The transaction was deleted',
+                        caption: this.dataStep1.data.title,
+                        color: 'secondary',
+                        timeout: '1500'
+                    })
                     this.stopBar();
                     this.clearData;
                 })
@@ -243,6 +267,11 @@ export const useFirebaseStore = defineStore('firebase', {
             signInWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 this.user= response.user;
+                Notify.create({
+                    message: 'You are logged in',
+                    color: 'primary',
+                    timeout: '1500'
+                })
             })
             .catch(error=> {
                 switch (error.code) {
@@ -302,7 +331,12 @@ export const useFirebaseStore = defineStore('firebase', {
         logOut() {
             this.startBar(); 
             signOut(auth).then(res=> {
-                this.user= null
+                this.user= null;
+                Notify.create({
+                    message: 'You are logged out',
+                    color: 'secondary',
+                    timeout: '1500'
+                })
             })    
             this.stopBar(); 
         },

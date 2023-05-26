@@ -28,13 +28,14 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "",
+  apiKey: "AIzaSyCHRnuI7G-Tb9dG4kr-pPPlqHPN0viNTRo",
   authDomain: "accounting-app-4240c.firebaseapp.com",
   projectId: "accounting-app-4240c",
   storageBucket: "accounting-app-4240c.appspot.com",
-  messagingSenderId: "",
-  appId: ""
+  messagingSenderId: "947003439190",
+  appId: "1:947003439190:web:3bcef371d64684c9fde3f7"
 }
+
 
 let firebaseApp = firebase.initializeApp(firebaseConfig);
 let auth= getAuth(firebaseApp);
