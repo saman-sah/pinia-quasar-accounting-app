@@ -58,14 +58,21 @@
             </q-card-section>
 
             <q-card-section class="q-pt-none" v-if="storeFirebase.dataStep1.type== 'debt'">
-                <q-input bottom-slots v-model="storeFirebase.dataStep1.data.name" label-color="secondary" label="Name" outlined>
-                    
-                </q-input>
+                <q-input 
+                bottom-slots 
+                v-model="storeFirebase.dataStep1.data.name" 
+                label-color="secondary" 
+                label="Name" 
+                outlined/>                                
             </q-card-section>
 
             <q-card-section class="q-pt-none">
-                <q-input bottom-slots v-model.number="storeFirebase.dataStep1.data.amount" label-color="secondary" label="Amount" outlined>                    
-                </q-input>
+                <q-input 
+                bottom-slots 
+                v-model.number="storeFirebase.dataStep1.data.amount" 
+                label-color="secondary" 
+                label="Amount" 
+                outlined />
             </q-card-section>
             <q-seperator />
             <q-card-section class="q-pt-none row justify-between">

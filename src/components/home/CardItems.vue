@@ -22,7 +22,7 @@
                     class="row justify-between">
                         <div class="left-section row">
                             <q-item-section avatar>
-                                <q-avatar>
+                                <q-avatar size="40px">
                                     <q-img :src="item.img" />
                                 </q-avatar>
                             </q-item-section>
@@ -56,11 +56,13 @@
   </template>
   
 <script setup>
-import { useFirebaseStore } from 'stores/firebase'
-const storeFirebase= useFirebaseStore();
-   
+    import { useFirebaseStore } from 'stores/firebase'
+    const storeFirebase= useFirebaseStore();   
 </script>
   
-  <style>
-  .q-focus-helper {display: none;}
-  </style>
+<style>
+    .q-focus-helper {display: none;}
+    .q-img__container {
+        padding: 4px;
+    }
+</style>
