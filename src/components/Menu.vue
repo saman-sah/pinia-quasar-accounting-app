@@ -20,19 +20,10 @@
         {{ link.title }}
       </q-item-section>
     </q-item>
-  </div>
-  <q-dialog v-model="storeFirebase.showModalStep1">
-    <StepOneModal 
-    @step2="storeFirebase.step2($event)"/>
-  </q-dialog>
-  <q-dialog v-model="storeFirebase.showModalStep2">
-    <StepTwoModal/>
-  </q-dialog>
+  </div>  
 </template>
 
 <script setup>
-import StepOneModal from '../../src/components/modals/steps/StepOne.vue'
-import StepTwoModal from '../../src/components/modals/steps/StepTwo.vue'
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
   const linksList = [
