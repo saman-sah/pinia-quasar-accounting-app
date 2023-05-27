@@ -174,7 +174,7 @@ export const useFirebaseStore = defineStore('firebase', {
     },
     actions: {
         createNewItem() {
-            // this.startBar(); 
+            this.startBar();
             if(this.user) {
                 let userId= auth.currentUser.uid
                 console.log('this.dataStep1');
@@ -182,7 +182,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 if(this.dataStep1.action== 'Update') {
                     update(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey ), 
                     this.dataStep1.data).then(()=> {
-                        // this.stopBar();
+                        this.stopBar();
                         Notify.create({
                             message: 'The transaction was updated',
                             caption: this.dataStep1.data.title,
@@ -201,13 +201,14 @@ export const useFirebaseStore = defineStore('firebase', {
                         type: this.dataStep1.type,
                         name: this.dataStep1.data.name ? this.dataStep1.data.name : ""
                     }).then(()=> {
-                        // this.stopBar();                       
+                        this.stopBar();                       
                         Notify.create({
                             message: 'The transaction was created',
                             caption: this.dataStep1.data.title,
                             color: 'primary',
                             timeout: '1500'
                         })
+                        this.showModalStep2= false
                         this.clearData;
                     })
                 }                                
@@ -216,7 +217,7 @@ export const useFirebaseStore = defineStore('firebase', {
 
         deleteItem() {
             if(this.user) {
-                // this.startBar();
+                this.startBar();
                 let userId= auth.currentUser.uid
                 remove(ref(db, 'users/' + userId +'/items/'+ this.dataStep1.itemKey))
                 .then(()=> {
@@ -227,7 +228,7 @@ export const useFirebaseStore = defineStore('firebase', {
                         color: 'secondary',
                         timeout: '1500'
                     })
-                    // this.stopBar();
+                    this.stopBar();
                     this.clearData;
                 })
             }
@@ -237,7 +238,7 @@ export const useFirebaseStore = defineStore('firebase', {
         handleAuthStateChange() {
             auth.onAuthStateChanged(user=> {
                 if(user) {
-                    // this.startBar(); 
+                    this.startBar();
                     let userId= auth.currentUser.uid 
                     this.user= user;
                     let currentPath=this.route.path
@@ -253,7 +254,7 @@ export const useFirebaseStore = defineStore('firebase', {
                             email: data.email
                         }
                     });
-                    // this.stopBar(); 
+                    this.stopBar(); 
                 }else {                       
                     this.user= null;
                     this.router.replace('/login')  
@@ -264,7 +265,7 @@ export const useFirebaseStore = defineStore('firebase', {
 
 
         login(userData) {
-            // this.startBar(); 
+            this.startBar();
             signInWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 this.user= response.user;
@@ -288,12 +289,12 @@ export const useFirebaseStore = defineStore('firebase', {
                 }
                 return
             })
-            // this.stopBar(); 
+            this.stopBar(); 
         },
         
         //Register Firebase Auth
         register(userData) {
-            // this.startBar(); 
+            this.startBar();
             createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 let userId= auth.currentUser.uid     
@@ -324,13 +325,13 @@ export const useFirebaseStore = defineStore('firebase', {
                 }
                 return
             })
-            // this.stopBar(); 
+            this.stopBar(); 
             
         },
 
         //Register Firebase Auth
         logOut() {
-            // this.startBar(); 
+            this.startBar();
             signOut(auth).then(res=> {
                 this.user= null;
                 Notify.create({
@@ -339,7 +340,7 @@ export const useFirebaseStore = defineStore('firebase', {
                     timeout: '1500'
                 })
             })    
-            // this.stopBar(); 
+            this.stopBar(); 
         },
         //End--------- Logout Firebase Auth
         

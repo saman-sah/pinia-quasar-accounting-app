@@ -23,82 +23,108 @@
                 </q-card>
             </q-card-section>
 
-            <!-- Selected Time -->
-            <q-card-section class="q-pt-none">
-                <q-input v-model="storeFirebase.dataStep1.data.time" outlined label-color="secondary" mask="time" :rules="['time']" label="Time">
-                    <template v-slot:append>
-                        <q-icon name="access_time" class="cursor-pointer">
-                            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                <q-time v-model="storeFirebase.dataStep1.data.time" bordered>
-                                    <div class="row items-center justify-end">
-                                        <q-btn v-close-popup label="Close" color="primary" />
-                                    </div>
-                                </q-time>
-                            </q-popup-proxy>
-                        </q-icon>
-                    </template>
-                </q-input>
-            </q-card-section>
-
-            <!-- Selected Date -->
-            <q-card-section class="q-pt-none">
-                <q-input v-model="storeFirebase.dataStep1.data.date" label-color="secondary" mask="date" :rules="['date']" outlined label="Date">
-                    <template v-slot:append>
-                        <q-icon name="event" class="cursor-pointer">
-                            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                <q-date v-model="storeFirebase.dataStep1.data.date">
-                                    <div class="row items-center justify-end">
-                                        <q-btn v-close-popup label="Close" color="primary"  />
-                                    </div>
-                                </q-date>
-                            </q-popup-proxy>
-                        </q-icon>
-                    </template>
-                </q-input>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none" v-if="storeFirebase.dataStep1.type== 'debt'">
-                <q-input 
-                bottom-slots 
-                v-model="storeFirebase.dataStep1.data.name" 
-                label-color="secondary" 
-                label="Name" 
-                outlined/>                                
-            </q-card-section>
-
-            <q-card-section class="q-pt-none">
-                <q-input 
-                bottom-slots 
-                v-model="storeFirebase.dataStep1.data.amount" 
-                label-slot
-                label-color="secondary" 
-                outlined 
-                type="number"
-                prefix="$">
-                <template v-slot:label>
-                <span class="text-secondary">Amount</span>
-                </template>
-                </q-input>
-            </q-card-section>
-            <q-seperator />
-            <q-card-section class="q-pt-none row justify-between">
-                <q-btn 
-                color="primary" 
-                glossy 
-                :label="storeFirebase.dataStep1.action" 
-                @click="storeFirebase.createNewItem()" 
-                v-close-popup/>
-                <q-btn
-                v-if="storeFirebase.dataStep1.action== 'Update'"
-                color="secondary" 
-                glossy 
-                label="Delete" 
-                @click="confirmDelete = true"
-                />
-            </q-card-section>
             
+            <form @submit.prevent.stop="validationForm" class="q-gutter-md">
             
-            <q-separator />
+                <!-- Selected Time -->
+                <q-card-section class="q-pt-none">
+                    <q-input v-model="storeFirebase.dataStep1.data.time" 
+                    outlined label-color="secondary" 
+                    mask="time" 
+                    :rules="['time']" 
+                    label="Time"
+                    class="q-pa-none"
+                    >
+                        <template v-slot:append>
+                            <q-icon name="access_time" class="cursor-pointer">
+                                <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                                    <q-time v-model="storeFirebase.dataStep1.data.time" bordered>
+                                        <div class="row items-center justify-end">
+                                            <q-btn v-close-popup label="Close" color="primary" />
+                                        </div>
+                                    </q-time>
+                                </q-popup-proxy>
+                            </q-icon>
+                        </template>
+                    </q-input>
+                </q-card-section>
+
+                <!-- Selected Date -->
+                <q-card-section class="q-pt-none">
+                    <q-input v-model="storeFirebase.dataStep1.data.date" 
+                    label-color="secondary" 
+                    mask="date" 
+                    :rules="['date']" 
+                    outlined label="Date"
+                    class="q-pa-none"
+                    >
+                        <template v-slot:append>
+                            <q-icon name="event" class="cursor-pointer">
+                                <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                                    <q-date v-model="storeFirebase.dataStep1.data.date">
+                                        <div class="row items-center justify-end">
+                                            <q-btn v-close-popup label="Close" color="primary"  />
+                                        </div>
+                                    </q-date>
+                                </q-popup-proxy>
+                            </q-icon>
+                        </template>
+                    </q-input>
+                </q-card-section>
+
+                <!-- Selected Name -->
+                <q-card-section class="q-pt-none" v-if="storeFirebase.dataStep1.type== 'debt'">
+                    <q-input 
+                    ref="nameRef"
+                    bottom-slots 
+                    v-model="storeFirebase.dataStep1.data.name" 
+                    label-color="secondary" 
+                    label="Name"
+                    lazy-rules
+                    :rules="nameRules" 
+                    outlined
+                    class="q-pa-none"/>                                
+                </q-card-section>
+
+                <!-- Selected Amount -->
+                <q-card-section class="q-pt-none">
+                    <q-input 
+                    ref="amountRef"
+                    bottom-slots 
+                    v-model.number="storeFirebase.dataStep1.data.amount" 
+                    label-slot
+                    label-color="secondary" 
+                    outlined 
+                    type="number"
+                    lazy-rules
+                    :rules="amountRules"
+                    prefix="$"
+                    class="q-pa-none"
+                    >
+                    <template v-slot:label>
+                    <span class="text-secondary">Amount</span>
+                    </template>
+                    </q-input>
+                </q-card-section>
+
+                <!-- Submit Button -->
+                <q-card-section class="q-pt-none row justify-between">
+                    <q-btn 
+                    color="primary" 
+                    glossy 
+                    :label="storeFirebase.dataStep1.action" 
+                    @click="validationForm()" 
+                    />
+                    <q-btn
+                    v-if="storeFirebase.dataStep1.action== 'Update'"
+                    color="secondary" 
+                    glossy 
+                    label="Delete" 
+                    @click="confirmDelete = true"
+                    />
+                </q-card-section>
+            </form>
+            
         </q-card>
         <q-dialog v-model="confirmDelete" persistent>
             <q-card>
@@ -129,6 +155,27 @@
         storeFirebase.dataStep1.data.date= YYYY +'/'+ MM +'/'+ DD;
     }
     const confirmDelete= ref(false)
+    const nameRef = ref(null)
+    const amountRef = ref(null)
+    const nameRules= [
+        val => (val && val.length > 0) || 'Please type a name'
+    ]
+    const amountRules= [
+        val => (val !== null && val !== '') || 'Please type amount',
+        val => (val > 0 ) || 'Please type a posetive number'
+    ]
+    function validationForm() {
+        if(storeFirebase.dataStep1.type== 'debt') {
+            if(nameRef.value.validate() && amountRef.value.validate()) {
+                storeFirebase.createNewItem()
+            }
+        }else {
+            if(amountRef.value.validate()) {
+                storeFirebase.createNewItem()
+            }
+        }
+        
+    }
 </script>
 <style>
 .card-new-item {
