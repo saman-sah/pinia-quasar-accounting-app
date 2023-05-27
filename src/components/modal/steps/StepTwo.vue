@@ -151,7 +151,9 @@
         var DD = String(currentTime.getDate()).padStart(2, '0');
         var MM = String(currentTime.getMonth() + 1).padStart(2, '0'); //January is 0!
         var YYYY = currentTime.getFullYear();
-        storeFirebase.dataStep1.data.time= currentTime.getHours() + ":" + currentTime.getMinutes();
+        storeFirebase.dataStep1.data.time= (currentTime.getHours() < 10 ? '0':'') + currentTime.getHours()
+        + ":" + 
+        (currentTime.getMinutes()< 10 ? '0':'')+currentTime.getHours() 
         storeFirebase.dataStep1.data.date= YYYY +'/'+ MM +'/'+ DD;
     }
     const confirmDelete= ref(false)
