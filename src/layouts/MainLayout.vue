@@ -40,7 +40,6 @@
         </q-btn-dropdown>
       </div>
     </q-header>
-<testComponent />
     <q-footer elevated class="bg-dark">
         <q-toolbar>
           <q-toolbar-title><nav-menu/></q-toolbar-title>
@@ -62,7 +61,6 @@
 
 <script setup>
 import navMenu from 'components/Menu.vue'
-import testComponent from '../components/modal/steps/test.vue'
 import StepOneModal from '../components/modal/steps/StepOne.vue'
 import StepTwoModal from '../components/modal/steps/StepTwo.vue'
 import { useFirebaseStore } from 'stores/firebase'
