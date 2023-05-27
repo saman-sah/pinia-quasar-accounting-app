@@ -47,13 +47,13 @@
         </q-toolbar>
     </q-footer>
     
-    <!-- <q-dialog v-model="storeFirebase.showModalStep1">
+    <q-dialog v-model="storeFirebase.showModalStep1">
       <StepOneModal 
       @step2="storeFirebase.step2($event)"/>
     </q-dialog>
     <q-dialog v-model="storeFirebase.showModalStep2">
       <StepTwoModal />
-    </q-dialog> -->
+    </q-dialog>
     <q-page-container>        
       <router-view />
     </q-page-container>
@@ -62,9 +62,9 @@
 
 <script setup>
 import navMenu from 'components/Menu.vue'
-import testComponent from '../components/modals/steps/test.vue'
-// import StepOneModal from '../components/modals/steps/StepOne.vue'
-// import StepTwoModal from '../components/modals/steps/StepTwo.vue'
+import testComponent from '../components/modal/steps/test.vue'
+import StepOneModal from '../components/modal/steps/StepOne.vue'
+import StepTwoModal from '../components/modal/steps/StepTwo.vue'
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
 </script>
