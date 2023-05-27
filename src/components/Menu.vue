@@ -31,9 +31,9 @@
 </template>
 
 <script setup>
+import CreateNewStep1 from './modals/CreateNewStep1.vue'
+import CreateNewStep2 from './modals/CreateNewStep2.vue'
 import { useFirebaseStore } from 'stores/firebase'
-import CreateNewStep1 from 'src/components/modals/CreateNewStep1.vue'
-import CreateNewStep2 from 'src/components/modals/CreateNewStep2.vue'
 const storeFirebase= useFirebaseStore();
   const linksList = [
     {
