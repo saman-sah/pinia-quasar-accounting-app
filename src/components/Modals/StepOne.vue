@@ -22,21 +22,21 @@
           <q-tab-panel name="expense">            
             <expenseTab 
             @step2="$emit('step2', $event)"
-            :expenseItems="createData.expense ? createData.expense : {}"
+            :expenseItems=" {}"
             />
           </q-tab-panel>
 
           <q-tab-panel name="income">            
             <incomeTab 
             @step2="$emit('step2', $event)"
-            :incomesItems="createData.incomes ? createData.incomes : {}"
+            :incomesItems="{}"
             />
           </q-tab-panel>
 
           <q-tab-panel name="debt">
             <debtTab 
             @step2="$emit('step2', $event)"
-            :debtsItems="createData.debts ? createData.debts : {}"
+            :debtsItems="{}"
             />
           </q-tab-panel>
         </q-tab-panels>
@@ -48,7 +48,7 @@
   import expenseTab from './tabs/Expense.vue'
   import incomeTab from './tabs/Income.vue'
   import debtTab from './tabs/Debt.vue'
-  import createData  from '../../../public/assets/data.json'
+  // import createData  from '../../../public/assets/data.json'
   // import { useAccountingStore } from 'stores/accounting'
   // import { storeToRefs } from 'pinia';
   import { ref } from 'vue'

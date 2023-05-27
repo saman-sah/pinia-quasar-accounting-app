@@ -1,5 +1,6 @@
 <template>
-    <q-list >
+    <div class="text-h6">Incomes</div>
+    <q-list v-if="expenseItems">
         <q-item v-for="(item, index) in expenseItems"
         :key="index"
         clickable 

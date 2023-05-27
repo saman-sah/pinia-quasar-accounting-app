@@ -1,6 +1,6 @@
 <template>
     <div class="text-h6">Debt</div>
-    <q-list >
+    <q-list v-if="debtsItems">
         <q-item v-for="(item, index) in debtsItems"
         :key="index"
         clickable 
