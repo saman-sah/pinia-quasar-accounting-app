@@ -21,13 +21,13 @@
       </q-item-section>
     </q-item>
   </div>
-  <q-dialog v-model="storeFirebase.showModalStep1">
+  <!-- <q-dialog v-model="storeFirebase.showModalStep1">
     <StepOne 
     @step2="storeFirebase.step2($event)"/>
   </q-dialog>
   <q-dialog v-model="storeFirebase.showModalStep2">
     <StepTwo/>
-  </q-dialog>
+  </q-dialog> -->
 </template>
 
 <script setup>

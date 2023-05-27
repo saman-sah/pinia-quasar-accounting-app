@@ -3,7 +3,7 @@
     <div class="q-gutter-y-md" style="max-width: 600px">
       <q-card>
         <q-tabs
-          v-model="storeFirebase.selectedTab"
+          v-model="tab"
           dense
           class="text-grey"
           active-color="primary"
@@ -18,25 +18,25 @@
 
         <q-separator />
 
-        <q-tab-panels v-model="storeFirebase.selectedTab" animated class="step_1_tab_panels" >
+        <q-tab-panels v-model="tab" animated class="step_1_tab_panels" >
           <q-tab-panel name="expense">            
             <expenseTab 
             @step2="$emit('step2', $event)"
-            :expenseItems=" {}"
+            :expenseItems="createData.expense ? createData.expense : {}"
             />
           </q-tab-panel>
 
           <q-tab-panel name="income">            
             <incomeTab 
             @step2="$emit('step2', $event)"
-            :incomesItems="{}"
+            :incomesItems="createData.incomes ? createData.incomes : {}"
             />
           </q-tab-panel>
 
           <q-tab-panel name="debt">
             <debtTab 
             @step2="$emit('step2', $event)"
-            :debtsItems="{}"
+            :debtsItems="createData.debts ? createData.debts : {}"
             />
           </q-tab-panel>
         </q-tab-panels>
@@ -45,12 +45,17 @@
   </div>
 </template>
 <script setup>
-  import expenseTab from '../../components/modals/tabs/Expense.vue'
-  import incomeTab from '../../components/modals/tabs/Income.vue'
-  import debtTab from '../../components/modals/tabs/Debt.vue'
-  // import createData  from '../../../public/assets/data.json'
-  import { useFirebaseStore } from 'stores/firebase'
-  const storeFirebase= useFirebaseStore();
+  import expenseTab from './tabs/Expense.vue'
+  import incomeTab from './tabs/Income.vue'
+  import debtTab from './tabs/Debt.vue'
+  import createData  from '../../data.json'
+  // import { useAccountingStore } from 'stores/accounting'
+  // import { storeToRefs } from 'pinia';
+  import { ref } from 'vue'
+  // const storeAccounting= useAccountingStore();
+  const tab= ref('expense')
+  // let income= ref('')
+  // let expend= ref('')
 </script>
 <style>
   .inputs-section {
