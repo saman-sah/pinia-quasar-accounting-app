@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="text-secondary row justify-between items-center bg-dark q-px-lg q-py-sm">
-      <div class="search">  
+      <div v-if="storeFirebase.user" class="search">  
         <q-input
         v-model="storeFirebase.searchedTxt" 
         label-color="secondary" 
@@ -13,6 +13,11 @@
           <q-icon color="secondary" name="search" />
         </template>
         </q-input>
+      </div>
+      <div v-else class="logo">  
+        <strong class="text-white">
+          Accounting app
+        </strong>
       </div>
       <div v-if="storeFirebase.user" class="user">
         <q-btn-dropdown
@@ -40,8 +45,8 @@
         </q-btn-dropdown>
       </div>
     </q-header>
-    <q-footer elevated class="bg-dark">
-        <q-toolbar>
+    <q-footer elevated class="bg-dark row">
+        <q-toolbar class="q-py-sm">
           <q-toolbar-title><nav-menu/></q-toolbar-title>
         </q-toolbar>
     </q-footer>

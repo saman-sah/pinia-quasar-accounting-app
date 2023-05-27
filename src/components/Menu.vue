@@ -1,15 +1,16 @@
 <template>
   <div class="row justify-around no-wrap footer-links">    
-    <q-item class="column link-item justify-center items-center q-py-sm"
+    <q-item class="column link-item justify-between items-center  q-pa-xs"
      v-for="(link, index) in linksList"
     :key="index"
     clickable
     tag="a"
     :to="link.href"
-    exact>
-      <q-item-section avatar class="q-pa-none q-px-sm">
-        <q-avatar v-if="link.src" rounded >
-          <q-img  :src="link.src" class="absolute-center" width="32px" />
+    exact
+    :disable="!storeFirebase.user">
+      <q-item-section avatar class="q-pa-none self-center ">
+        <q-avatar v-if="link.src" rounded  class="q-mx-auto">
+          <q-img  :src="link.src" class="absolute-center" width="38px" />
         </q-avatar>
         <q-btn v-else @click="storeFirebase.showModalStep1 = true" 
         outline round 
