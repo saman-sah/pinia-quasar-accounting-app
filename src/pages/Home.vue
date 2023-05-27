@@ -4,7 +4,7 @@
       <q-banner dense inline-actions class="text-white bg-secondary q-py-xs" rounded>
           <span class="text-h6">Total</span>
           <template v-slot:action>
-              <span class="text-h6" v-if="storeFirebase.items">{{ storeFirebase.total }}</span>
+              <span class="text-h6" v-if="storeFirebase.items">{{ (storeFirebase.total).toFixed(2) }}</span>
           </template>
       </q-banner>
     </div>

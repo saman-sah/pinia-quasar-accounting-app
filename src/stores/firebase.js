@@ -189,6 +189,7 @@ export const useFirebaseStore = defineStore('firebase', {
                             color: 'primary',
                             timeout: '1500'
                         })
+                        this.showModalStep2= false
                         this.clearData;
                     })
                 }else {

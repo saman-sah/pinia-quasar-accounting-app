@@ -9,7 +9,7 @@
                     <div class="text-subtitle2">{{ key }}</div>
                 </div>
                 <div class="sub-total">          
-                    <div class="text-subtitle2">{{ items.subTotal }}</div>
+                    <div class="text-subtitle2">{{ (items.subTotal).toFixed(2) }}</div>
                 </div>
             </q-card-section>
         
@@ -38,7 +38,7 @@
                         </div>
                         <div :class="['right-section row items-center text-subtitle2', 
                         item.type== 'expense'  || item.title== 'Lend' ? 'text-negative' : 'text-positive']">
-                            <strong> {{ item.amount }}</strong>
+                            <strong> {{ (item.amount).toFixed(2) }}</strong>
                         </div>
                     </q-item>
                 </q-list>
