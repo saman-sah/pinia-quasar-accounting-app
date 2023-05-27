@@ -48,8 +48,7 @@
     </q-footer>
     
     <q-dialog v-model="storeFirebase.showModalStep1">
-      <StepOneModal 
-      @step2="storeFirebase.step2($event)"/>
+      <StepOneModal />
     </q-dialog>
     <q-dialog v-model="storeFirebase.showModalStep2">
       <StepTwoModal/>
