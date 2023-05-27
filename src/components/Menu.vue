@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-around no-wrap footer-links">    
-    <q-item class="column link-item justify-center items-center q-py-sm"
+    <!-- <q-item class="column link-item justify-center items-center q-py-sm"
      v-for="(link, index) in linksList"
     :key="index"
     clickable
@@ -19,47 +19,47 @@
       <q-item-section v-if="link.title" class="text-caption">
         {{ link.title }}
       </q-item-section>
-    </q-item>
+    </q-item> -->
   </div>
   <q-dialog v-model="storeFirebase.showModalStep1">
-    <CreateNewStep1 
+    <StepOne 
     @step2="storeFirebase.step2($event)"/>
   </q-dialog>
   <q-dialog v-model="storeFirebase.showModalStep2">
-    <CreateNewStep2/>
+    <StepTwo/>
   </q-dialog>
 </template>
 
 <script setup>
-import CreateNewStep1 from './modals/CreateNewStep1.vue'
-import CreateNewStep2 from './modals/CreateNewStep2.vue'
+import StepOne from './modals/StepOne.vue'
+import StepTwo from './modals/StepTwo.vue'
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
-  const linksList = [
-    {
-      title: 'Home',
-      href: '/',
-      src: './assets/icons/home-icon.png'
-    },    
-    {
-      title: 'Expenses',
-      href: '/expense',
-      src: './assets/icons/menu-expenses.png'
-    },
-    {      
-      icon: 'add'
-    },
-    {
-      title: 'Debt',
-      href: '/debt',
-      src: './assets/icons/lend.png'
-    },
-    {
-      title: 'Incomes',
-      href: '/income',
-      src: './assets/icons/other-income.png'
-    },
-  ]
+  // const linksList = [
+  //   {
+  //     title: 'Home',
+  //     href: '/',
+  //     src: './assets/icons/home-icon.png'
+  //   },    
+  //   {
+  //     title: 'Expenses',
+  //     href: '/expense',
+  //     src: './assets/icons/menu-expenses.png'
+  //   },
+  //   {      
+  //     icon: 'add'
+  //   },
+  //   {
+  //     title: 'Debt',
+  //     href: '/debt',
+  //     src: './assets/icons/lend.png'
+  //   },
+  //   {
+  //     title: 'Incomes',
+  //     href: '/income',
+  //     src: './assets/icons/other-income.png'
+  //   },
+  // ]
   
 </script>
 <style>
