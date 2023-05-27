@@ -1,5 +1,5 @@
 <template>
-    <div class="text-h6">Incomes</div>
+    <div class="text-h6">Expense</div>
     <q-list v-if="expenseItems">
         <q-item v-for="(item, index) in expenseItems"
         :key="index"

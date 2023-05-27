@@ -28,6 +28,7 @@ export const useFirebaseStore = defineStore('firebase', {
         showModalStep2: false,
         loading: true,
         searchedTxt: '',
+        selectedTab: 'expense',
         dataStep1: {
             type: "",
             data: {

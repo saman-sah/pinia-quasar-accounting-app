@@ -3,7 +3,7 @@
     <div class="q-gutter-y-md" style="max-width: 600px">
       <q-card>
         <q-tabs
-          v-model="tab"
+          v-model="storeFirebase.selectedTab"
           dense
           class="text-grey"
           active-color="primary"
@@ -18,7 +18,7 @@
 
         <q-separator />
 
-        <q-tab-panels v-model="tab" animated class="step_1_tab_panels" >
+        <q-tab-panels v-model="storeFirebase.selectedTab" animated class="step_1_tab_panels" >
           <q-tab-panel name="expense">            
             <expenseTab 
             @step2="$emit('step2', $event)"
@@ -45,17 +45,12 @@
   </div>
 </template>
 <script setup>
-  import expenseTab from './tabs/Expense.vue'
-  import incomeTab from './tabs/Income.vue'
-  import debtTab from './tabs/Debt.vue'
+  import expenseTab from '../../components/modals/tabs/Expense.vue'
+  import incomeTab from '../../components/modals/tabs/Income.vue'
+  import debtTab from '../../components/modals/tabs/Debt.vue'
   // import createData  from '../../../public/assets/data.json'
-  // import { useAccountingStore } from 'stores/accounting'
-  // import { storeToRefs } from 'pinia';
-  import { ref } from 'vue'
-  // const storeAccounting= useAccountingStore();
-  const tab= ref('expense')
-  // let income= ref('')
-  // let expend= ref('')
+  import { useFirebaseStore } from 'stores/firebase'
+  const storeFirebase= useFirebaseStore();
 </script>
 <style>
   .inputs-section {

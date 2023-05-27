@@ -31,8 +31,8 @@
 </template>
 
 <script setup>
-import StepOne from './modals/StepOne.vue'
-import StepTwo from './modals/StepTwo.vue'
+import StepOne from '../../src/components/modals/StepOne.vue'
+import StepTwo from '../../src/components/modals/StepTwo.vue'
 import { useFirebaseStore } from 'stores/firebase'
 const storeFirebase= useFirebaseStore();
   const linksList = [
