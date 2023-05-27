@@ -45,10 +45,10 @@
   </div>
 </template>
 <script setup>
-  import expenseTab from './tabs/Expense.vue'
-  import incomeTab from './tabs/Income.vue'
-  import debtTab from './tabs/Debt.vue'
-  import createData  from '../../data.json'
+  import expenseTab from '../tabs/Expense.vue'
+  import incomeTab from '../tabs/Income.vue'
+  import debtTab from '../tabs/Debt.vue'
+  import createData  from '../../../data.json'
   // import { useAccountingStore } from 'stores/accounting'
   // import { storeToRefs } from 'pinia';
   import { ref } from 'vue'
