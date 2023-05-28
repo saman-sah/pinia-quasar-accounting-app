@@ -19,7 +19,7 @@
   
             <q-tab-panels v-model="tab" animated>
                 <q-tab-panel name="login">
-                    <form @submit.prevent.stop="loginValidationForm" class="q-gutter-md">
+                    <form @submit.prevent="loginValidationForm" class="q-gutter-md">
                         <q-input 
                         outlined 
                         v-model="formData.email" 
@@ -51,7 +51,7 @@
                 </q-tab-panel>
     
                 <q-tab-panel name="register">
-                    <form @submit.prevent.stop="registerValidationForm" class="q-gutter-md">
+                    <form @submit.prevent="registerValidationForm" class="q-gutter-md">
                         <q-input 
                         outlined 
                         v-model="formData.name" 
