@@ -306,6 +306,8 @@ export const useFirebaseStore = defineStore('firebase', {
                 })
             })
             .catch(error=> {
+                console.log('code');
+                console.log(error.code);
                 switch (error.code) {
                     case 'auth/email-already-in-use':
                         alert("Email already in use")
@@ -339,7 +341,22 @@ export const useFirebaseStore = defineStore('firebase', {
                     message: 'You are logged out',
                     color: 'secondary',
                     timeout: '1500'
-                })
+                });
+                dataStep1= {
+                    type: "",
+                    data: {
+                        time: "",
+                        date: "",    
+                        amount: 0,
+                        name: "",
+                        title:"",
+                        type:"",
+                        img:""
+                    },
+                    action:'',
+                    itemKey: ''
+                }
+                searchedTxt= ''
             })    
             this.stopBar(); 
         },
