@@ -308,24 +308,25 @@ export const useFirebaseStore = defineStore('firebase', {
             .catch(error=> {
                 console.log('code');
                 console.log(error.code);
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                        alert("Email already in use")
-                        break;
-                    case 'auth/invalid-email':
-                        alert("Invalid Email")
-                        break;
-                    case 'auth/operation-not-allowed':
-                        alert("Operation not allowes")
-                        break;
-                    case 'auth/weak-password':
-                        alert("Week Password")
-                        break;
+                alert(error.code)
+                // switch (error.code) {
+                //     case 'auth/email-already-in-use':
+                //         alert("Email already in use")
+                //         break;
+                //     case 'auth/invalid-email':
+                //         alert("Invalid Email")
+                //         break;
+                //     case 'auth/operation-not-allowed':
+                //         alert("Operation not allowes")
+                //         break;
+                //     case 'auth/weak-password':
+                //         alert("Week Password")
+                //         break;
                     
-                    default:
-                        alert("Something went Wrong")
+                //     default:
+                //         alert("Something went Wrong")
                         
-                }
+                // }
                 return
             })
             this.stopBar(); 
