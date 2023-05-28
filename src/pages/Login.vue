@@ -19,64 +19,69 @@
   
             <q-tab-panels v-model="tab" animated>
                 <q-tab-panel name="login">
-                    <q-input 
-                    outlined 
-                    v-model="formData.email" 
-                    label="Email"  
-                    class="q-my-md"
-                    />
-                    <q-input 
-                    :type="isPwd ? 'password' : 'text'"
-                    outlined 
-                    v-model="formData.password" 
-                    label="Password"
-                    class="q-mb-md"
-                    >
-                        <template v-slot:append>
-                            <q-icon
-                                :name="isPwd ? 'visibility_off' : 'visibility'"
-                                class="cursor-pointer"
-                                @click="isPwd = !isPwd"
-                            />
-                        </template>
-                    </q-input>
-                    <div class="row justify-end">
-                        <q-btn 
-                        color="primary" 
-                        label="Login" @click="storeFirebase.login(formData)"/>
-                    </div>
+                    <form @submit.prevent.stop="loginValidationForm" class="q-gutter-md">
+                        <q-input 
+                        outlined 
+                        v-model="formData.email" 
+                        label="Email"  
+                        class="q-my-md"
+                        />
+                        <q-input 
+                        :type="isPwd ? 'password' : 'text'"
+                        outlined 
+                        v-model="formData.password" 
+                        label="Password"
+                        class="q-mb-md"
+                        >
+                            <template v-slot:append>
+                                <q-icon
+                                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                                    class="cursor-pointer"
+                                    @click="isPwd = !isPwd"
+                                />
+                            </template>
+                        </q-input>
+                        <div class="row justify-end">
+                            <q-btn 
+                            color="primary" 
+                            label="Login" 
+                            type="submit"/>
+                        </div>
+                    </form>
                 </q-tab-panel>
-  
+    
                 <q-tab-panel name="register">
-                    <q-input 
-                    outlined 
-                    v-model="formData.name" 
-                    label="Name"
-                    />
-                    <q-input 
-                    outlined 
-                    v-model="formData.email" 
-                    label="Email"  
-                    class="q-my-md"
-                    />
-                    <q-input 
-                    :type="isPwd ? 'password' : 'text'"
-                    outlined 
-                    v-model="formData.password" 
-                    label="Password"
-                    class="q-mb-md"
-                    >
-                        <template v-slot:append>
-                            <q-icon
-                                :name="isPwd ? 'visibility_off' : 'visibility'"
-                                class="cursor-pointer"
-                                @click="isPwd = !isPwd"
-                            />
-                        </template>
-                    </q-input>
-                    <div class="row justify-end">
-                        <q-btn color="primary" label="Register" @click="storeFirebase.register(formData)"/>
-                    </div>
+                    <form @submit.prevent.stop="registerValidationForm" class="q-gutter-md">
+                        <q-input 
+                        outlined 
+                        v-model="formData.name" 
+                        label="Name"
+                        />
+                        <q-input 
+                        outlined 
+                        v-model="formData.email" 
+                        label="Email"  
+                        class="q-my-md"
+                        />
+                        <q-input 
+                        :type="isPwd ? 'password' : 'text'"
+                        outlined 
+                        v-model="formData.password" 
+                        label="Password"
+                        class="q-mb-md"
+                        >
+                            <template v-slot:append>
+                                <q-icon
+                                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                                    class="cursor-pointer"
+                                    @click="isPwd = !isPwd"
+                                />
+                            </template>
+                        </q-input>
+                        <div class="row justify-end">
+                            <q-btn color="primary" label="Register" type="submit"/>
+                        </div>
+                    </form>
                 </q-tab-panel>
             </q-tab-panels>
         </q-card>
@@ -95,6 +100,12 @@ const formData= reactive({
     password:''
 })
 const isPwd= ref(true)
+function loginValidationForm() {
+    storeFirebase.login(formData)
+}
+function registerValidationForm() {
+    storeFirebase.register(formData)
+}
 </script>
 
 <style>
