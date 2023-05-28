@@ -239,7 +239,7 @@ export const useFirebaseStore = defineStore('firebase', {
         handleAuthStateChange() {
             auth.onAuthStateChanged(user=> {
                 if(user) {
-                    this.startBar();
+                    // this.startBar();
                     let userId= auth.currentUser.uid 
                     this.user= user;
                     let currentPath=this.route.path
@@ -255,7 +255,7 @@ export const useFirebaseStore = defineStore('firebase', {
                             email: data.email
                         }
                     });
-                    this.stopBar(); 
+                    // this.stopBar(); 
                 }else {                       
                     this.user= null;
                     this.router.replace('/login')  
@@ -266,7 +266,7 @@ export const useFirebaseStore = defineStore('firebase', {
 
 
         login(userData) {
-            this.startBar();
+            // this.startBar();
             signInWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 this.user= response.user;
@@ -290,12 +290,12 @@ export const useFirebaseStore = defineStore('firebase', {
                 }
                 return
             })
-            this.stopBar(); 
+            // this.stopBar(); 
         },
         
         //Register Firebase Auth
         register(userData) {
-            this.startBar();
+            // this.startBar();
             createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then(response=> {
                 let userId= auth.currentUser.uid     
@@ -329,7 +329,7 @@ export const useFirebaseStore = defineStore('firebase', {
                 // }
                 return
             })
-            this.stopBar(); 
+            // this.stopBar(); 
             
         },
 
