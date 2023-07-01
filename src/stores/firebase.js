@@ -26,7 +26,7 @@ export const useFirebaseStore = defineStore('firebase', {
         bar: null,
         showModalStep1: false,
         showModalStep2: false,
-        loading: true,
+        loading: false,
         searchedTxt: '',
         selectedTab: 'expense',
         dataStep1: {
@@ -59,9 +59,9 @@ export const useFirebaseStore = defineStore('firebase', {
                             if((item.title).toLowerCase().indexOf(state.searchedTxt)== 0) {
                                 filteredList.items[key]=item
                                 if(item.title== 'Lend') {
-                                    filteredList.total -= item.amount
+                                    filteredList.total -= parseInt(item.amount)
                                 }else{
-                                    filteredList.total += item.amount
+                                    filteredList.total += parseInt(item.amount)
                                 }                                
                                 
                                 foundedTitels.push(item.title)
@@ -70,9 +70,9 @@ export const useFirebaseStore = defineStore('firebase', {
                                 if (~(item.title).toLowerCase().indexOf(state.searchedTxt) && !found){
                                     filteredList.items[key]=item
                                     if(item.title== 'Lend') {
-                                        filteredList.total -= item.amount
+                                        filteredList.total -= parseInt(item.amount)
                                     }else{
-                                        filteredList.total += item.amount
+                                        filteredList.total += parseInt(item.amount)
                                     }
                                 }
 
@@ -80,14 +80,16 @@ export const useFirebaseStore = defineStore('firebase', {
                         }else {
                             filteredList.items[key]=item
                             if(item.title== 'Lend') {
-                                filteredList.total -= item.amount
+                                filteredList.total -= parseInt(item.amount)
                             }else{
-                                filteredList.total += item.amount
+                                filteredList.total += parseInt(item.amount)
                             }
                         }
                         
                     }
                 });
+                console.log('filteredList');
+                console.log(filteredList);
                 return filteredList
             }
         },     
@@ -127,9 +129,9 @@ export const useFirebaseStore = defineStore('firebase', {
                     if (objDates[itemDate]) {
                         objDates[itemDate].items[keyItem]=item;
                         if(item.type== 'income' || item.title== 'Borrow') {
-                            objDates[itemDate].subTotal += item.amount
+                            objDates[itemDate].subTotal += parseInt(item.amount)
                         }else {
-                            objDates[itemDate].subTotal -= item.amount
+                            objDates[itemDate].subTotal -= parseInt(item.amount)
                         }
                     }
                 });
@@ -145,9 +147,9 @@ export const useFirebaseStore = defineStore('firebase', {
                 Object.keys(state.items).forEach((keyItem) => {
                     const item = state.items[keyItem];
                     if(item.type== 'income' || item.title== 'Borrow'){
-                        total+=item.amount
+                        total+=parseInt(item.amount)
                     }else {
-                        total-=item.amount
+                        total-=parseInt(item.amount)
                     }                    
                 }); 
                 return total               
