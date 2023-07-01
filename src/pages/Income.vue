@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="right">
-                            <strong>{{ (item.amount).toFixed(2) }}</strong>
+                            <strong>{{ parseInt(item.amount).toFixed(2) }}</strong>
                         </div>
                     </q-item>
                 </q-list>

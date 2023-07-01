@@ -28,13 +28,13 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHRnuI7G-Tb9dG4kr-pPPlqHPN0viNTRo",
-  authDomain: "accounting-app-4240c.firebaseapp.com",
-  projectId: "accounting-app-4240c",
-  storageBucket: "accounting-app-4240c.appspot.com",
-  messagingSenderId: "947003439190",
-  appId: "1:947003439190:web:3bcef371d64684c9fde3f7"
-}
+  apiKey: "AIzaSyDi37RWuD7-sGh04TJhymoKe3IMsnSF3YY",
+  authDomain: "accounting-app-ae63d.firebaseapp.com",
+  projectId: "accounting-app-ae63d",
+  storageBucket: "accounting-app-ae63d.appspot.com",
+  messagingSenderId: "693030658179",
+  appId: "1:693030658179:web:a894b26b4935089dc5bbb6"
+};
 
 
 let firebaseApp = firebase.initializeApp(firebaseConfig);
